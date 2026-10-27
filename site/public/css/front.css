@@ -1,0 +1,922 @@
+/* The Ribbon — the front door (/ and /subscribe/). Persuade register: the week's issue on an ochre ground,
+   Instrument Serif to make the promise, Schibsted Grotesk to do the work. Faces live in fonts.css. See DESIGN.md. */
+
+@view-transition { navigation: auto; } /* same-origin page changes crossfade, like the rest of the site */
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 200ms; animation-timing-function: var(--ease-out); }
+
+:root {
+  /* Colour. One ochre ground, taken from Issue 3's cover and kept as the brand's Saturday colour. Ink does everything else. */
+  --issue: oklch(0.885 0.072 84);
+  --issue-sunk: oklch(0.855 0.08 82);
+  --ink: oklch(0.22 0.025 55);
+  --ink-soft: oklch(0.4 0.04 62);
+  --line: oklch(0.22 0.025 55 / 0.2);
+  --line-strong: oklch(0.22 0.025 55 / 0.42);
+  --field-edge: oklch(0.56 0.04 65);
+  --paper: oklch(0.975 0.012 88);
+  --paper-soft: oklch(0.82 0.03 80);
+  --paper-line: oklch(0.975 0.012 88 / 0.22);
+  --sheet: oklch(0.965 0.01 88);
+  --ribbon: oklch(0.55 0.19 24);
+  --ribbon-on-ink: oklch(0.66 0.17 26);
+  --alert: oklch(0.45 0.16 28);
+  --device: oklch(0.24 0.006 250);
+  --device-edge: oklch(0.36 0.008 250);
+  --eink: oklch(0.93 0.004 95);
+
+  /* Type. Display is Instrument Serif at 400; everything that works is Schibsted Grotesk. */
+  --font-display: "Instrument Serif", "Instrument Serif Fallback", Georgia, serif;
+  --font-ui: "Schibsted Grotesk", "Schibsted Grotesk Fallback", Arial, sans-serif;
+  --text-xs: 0.8125rem;
+  --text-s: 0.9375rem;
+  --text-m: 1.0625rem;
+  --text-l: 1.1875rem;
+  --display-s: clamp(2rem, 1.7rem + 1.2vw, 2.625rem);
+  --display-m: clamp(2.125rem, 1.7rem + 1.6vw, 3.25rem);
+  --display-l: clamp(2.5rem, 1.9rem + 2vw, 3.75rem);
+
+  /* Space (4-based) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 9rem;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --bar-h: 3.5rem;
+  /* Header to hero: the widest interval in the first viewport, so the bar reads as chrome and the hero as the page.
+     It scales with the fold height, because on phones every pixel here comes out of the book. */
+  --hero-top: clamp(var(--space-5), 4svh, var(--space-7));
+
+  /* Shape */
+  --radius-paper: 2px;
+  --radius-field: 14px;
+  --radius-device: 26px;
+  --radius-pill: 999px;
+  --shadow-paper: 0 1px 2px oklch(0.3 0.06 60 / 0.16), 0 34px 64px -30px oklch(0.28 0.07 55 / 0.6);
+  --shadow-device: 0 40px 80px -36px oklch(0.25 0.07 55 / 0.65);
+  --shadow-pill: 0 10px 24px -14px oklch(0.22 0.025 55 / 0.6);
+  --ring: 0 0 0 3px oklch(0.22 0.025 55 / 0.16);
+
+  /* Motion (Emil Kowalski's curves) */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-micro: 160ms;
+  --dur-step: 260ms;
+  --dur-refresh: 720ms;
+
+  /* The book: page width over height, from the issue's page images */
+  --page-ratio: 1200 / 1697;
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --bar-h: 4.5rem;
+    --hero-top: clamp(var(--space-8), 12svh, var(--space-9));
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  background: var(--issue);
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+  scrollbar-color: var(--ink-soft) var(--issue);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  font: 400 var(--text-m)/1.55 var(--font-ui);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  caret-color: var(--ink);
+}
+
+::selection { background: var(--ink); color: var(--issue); }
+
+img, svg { display: block; max-width: 100%; }
+
+h1, h2, p, figure { margin: 0; }
+
+h1, h2, .display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+
+em { font-style: italic; }
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.tnum { font-variant-numeric: tabular-nums; }
+
+.skip {
+  position: absolute;
+  left: var(--gutter);
+  top: -4rem;
+  padding: var(--space-3) var(--space-4);
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  z-index: 10;
+}
+.skip:focus { top: var(--space-2); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Bar */
+
+.bar {
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-inline: var(--gutter);
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  font: 400 1.375rem/1 var(--font-display);
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.wordmark__mark { width: 0.6875rem; height: auto; fill: var(--ribbon); margin-top: -0.125rem; }
+
+.bar__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: var(--text-s);
+  font-weight: 500;
+  text-decoration: none;
+}
+.bar__link:hover { text-decoration: underline; text-underline-offset: 0.3em; text-decoration-thickness: 1px; }
+
+/* Actions: one primary pill, one secondary ghost, then text links. Nothing else is a button. */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 3.5rem;
+  padding: 0 var(--space-6);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--paper);
+  font: 600 var(--text-l)/1 var(--font-ui);
+  letter-spacing: 0.002em;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  box-shadow: var(--shadow-pill);
+  transition: transform var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out), background-color var(--dur-micro) ease;
+}
+.pill svg { width: 1.0625rem; height: 1.0625rem; transition: transform var(--dur-micro) var(--ease-out); }
+.pill:active { transform: scale(0.97); }
+.pill[disabled] { cursor: progress; background: var(--ink-soft); box-shadow: none; }
+
+.ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 3rem;
+  padding: 0 var(--space-5);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--ink);
+  font: 600 var(--text-m)/1 var(--font-ui);
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform var(--dur-micro) var(--ease-out), background-color var(--dur-micro) ease, color var(--dur-micro) ease;
+}
+.ghost svg { width: 1rem; height: 1rem; transition: transform var(--dur-micro) var(--ease-out); }
+.ghost:active { transform: scale(0.97); }
+
+@media (hover: hover) and (pointer: fine) {
+  .pill:hover { transform: translateY(-1px); box-shadow: 0 16px 30px -14px oklch(0.22 0.025 55 / 0.65); }
+  .pill:hover svg, .ghost:hover svg { transform: translateX(2px); }
+  .pill:active { transform: scale(0.97); }
+  .ghost:hover { background: var(--ink); color: var(--paper); }
+}
+
+.quiet-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  font-size: var(--text-s);
+  font-weight: 500;
+}
+.quiet-links a, .textlink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.35em;
+  transition: text-decoration-color var(--dur-micro) ease;
+}
+.quiet-links a:hover, .textlink:hover { text-decoration-color: currentColor; }
+
+/* Lead: the issue itself, turnable, with one ask beside it */
+
+.lead {
+  display: grid;
+  grid-template-areas: "title" "sub" "meta" "book" "pager" "actions";
+  justify-items: center;
+  text-align: center;
+  padding: var(--hero-top) var(--gutter) var(--space-8);
+}
+
+/* On phones the title box dissolves so the issue line can sit under the sub, as the cover's caption. */
+.lead__title { display: contents; }
+.lead__title h1 { grid-area: title; font-size: var(--display-l); }
+/* The hero is two clauses, the problem and then the way out; each keeps its own line. */
+.lead__title h1 .clause { display: block; }
+.lead__meta { grid-area: meta; margin-bottom: var(--space-3); font-size: var(--text-s); color: var(--ink-soft); }
+
+/* The sub: one sentence from the problem to the Saturday issue. */
+.lead__sub {
+  grid-area: sub;
+  max-width: 32ch;
+  margin: var(--space-3) 0 var(--space-4);
+  font-size: var(--text-m);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+/* A non-default variant holds its hero copy back until ab.js has put it in, so variant A never flashes. */
+html[data-ab-pending] [data-ab-hero],
+html[data-ab-pending] [data-ab-sub],
+html[data-ab-pending] [data-ab-cta] { visibility: hidden; }
+
+.lead__actions {
+  grid-area: actions;
+  display: grid;
+  justify-items: center;
+  width: 100%;
+  margin-top: var(--space-4);
+}
+.lead__actions .pill { width: min(100%, 20rem); }
+.lead__free { margin-top: var(--space-3); font-size: var(--text-s); color: var(--ink-soft); }
+.lead__free strong { color: var(--ink); font-weight: 600; }
+.lead__actions .quiet-links { margin-top: var(--space-3); justify-content: center; }
+
+@media (min-width: 80rem) {
+  .lead {
+    grid-template-columns: minmax(17rem, 1fr) auto minmax(17rem, 1fr);
+    grid-template-rows: 1fr auto auto;
+    grid-template-areas:
+      "title book sub"
+      "title book actions"
+      ". pager .";
+    align-items: end;
+    align-content: center;
+    column-gap: var(--space-7);
+    min-height: calc(100svh - var(--bar-h));
+    padding: var(--hero-top) var(--gutter) var(--space-7);
+  }
+  .lead__title { display: block; grid-area: title; justify-self: end; text-align: right; margin: 0; }
+  .lead__meta { margin: var(--space-3) 0 0; }
+  .lead__title h1 { margin-inline: auto 0; max-width: 10ch; font-size: var(--display-m); }
+  .lead__sub { justify-self: start; text-align: left; max-width: 22ch; margin: 0 0 var(--space-5); font-size: var(--text-l); line-height: 1.4; }
+  .lead__actions { justify-self: start; justify-items: start; width: auto; margin: 0; }
+  .lead__actions .pill { width: auto; white-space: nowrap; }
+  .lead__actions .quiet-links { justify-content: flex-start; }
+}
+
+/* The book: the week's issue as a magazine on the table. Closed, the cover; open, two facing pages on one spine.
+   --page-w is one page. Phones show the right-hand page whole and the edge of the left one beside it; wider screens
+   show the whole spread. front.js draws the curl: clip-path and a 2D matrix per frame, two light layers, no 3D. */
+
+.book {
+  grid-area: book;
+  position: relative;
+  /* 24.5rem is the rest of the phone hero: title, sub, issue line, caption, CTA and the free line. */
+  --page-w: min(72vw, 19.5rem, max(13rem, calc((100svh - var(--bar-h) - var(--hero-top) - 24.5rem) * 1200 / 1697)));
+  width: var(--page-w);
+  height: calc(var(--page-w) * 1697 / 1200);
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  cursor: grab;
+  outline: none;
+}
+.book.is-dragging { cursor: grabbing; }
+.book:focus-visible { outline: 2px solid var(--ink); outline-offset: 6px; border-radius: 4px; }
+
+@media (min-width: 40rem) {
+  .book {
+    --page-w: min(calc(50vw - var(--gutter)), 17rem, max(10rem, calc((100svh - var(--bar-h) - var(--hero-top) - 24.5rem) * 1200 / 1697)));
+    width: calc(var(--page-w) * 2);
+  }
+}
+@media (min-width: 80rem) {
+  /* 5.5rem is what sits under the book: the caption and the hero's 3rem foot. The side columns keep 17rem each. */
+  .book { --page-w: min(calc((100svh - var(--bar-h) - var(--hero-top) - 5.5rem) * 1200 / 1697), 31.1rem, calc(50vw - var(--gutter) - var(--space-7) - 17rem)); }
+}
+
+/* The spine is the spread's left edge: rectos lie right of it, versos left. --shift (set by front.js) centres the closed
+   cover or the open spread, and slides the phone's open spread so the verso's edge shows. */
+.spread {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--page-w);
+  translate: var(--shift, 0px) 0;
+  transition: translate 560ms var(--ease-drawer);
+}
+@media (min-width: 40rem) {
+  .spread { left: 50%; --shift: calc(var(--page-w) / -2); }
+}
+/* The phone's open spread hangs off the left edge of the screen; the page never scrolls sideways for it. */
+.lead { overflow-x: clip; }
+
+/* The pages still to come, seen at each fore-edge. Thins as you read. */
+.stack {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--page-w);
+  background: var(--sheet);
+  box-shadow: var(--shadow-paper);
+}
+.stack--r { border-radius: 0 var(--radius-paper) var(--radius-paper) 0; }
+.stack--l { translate: -100% 0; border-radius: var(--radius-paper) 0 0 var(--radius-paper); }
+.stack[data-depth="none"] { visibility: hidden; }
+.stack::before, .stack::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--sheet);
+  box-shadow: 0 0 0 0.5px oklch(0.4 0.04 62 / 0.28);
+  transition: transform var(--dur-step) var(--ease-out), opacity var(--dur-step) ease;
+}
+.stack--r::before { transform: translate(5px, 3px); }
+.stack--r::after { transform: translate(2.5px, 1.5px); }
+.stack--l::before { transform: translate(-5px, 3px); }
+.stack--l::after { transform: translate(-2.5px, 1.5px); }
+.stack[data-depth="1"]::before, .stack[data-depth="0"]::before, .stack[data-depth="0"]::after { transform: none; opacity: 0; }
+
+.leaf {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--page-w);
+  overflow: hidden;
+  border-radius: 0 var(--radius-paper) var(--radius-paper) 0;
+  background: var(--sheet);
+  transform-origin: 0 0;
+  visibility: hidden;
+  transition-property: none; /* placed by front.js frame by frame; never eased by the reduced-motion 1ms rule either */
+}
+.leaf.is-left { border-radius: var(--radius-paper) 0 0 var(--radius-paper); }
+.leaf.is-shown { visibility: visible; }
+.book.is-turning .leaf.is-shown { will-change: transform, clip-path; }
+.leaf img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; -webkit-user-drag: none; }
+
+/* The binding: each page darkens into the gutter, so the two halves read as one magazine lying open. */
+.leaf::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, oklch(0.25 0.03 60 / 0.22), oklch(0.25 0.03 60 / 0.07) 2.5%, oklch(0.25 0.03 60 / 0) 8%);
+}
+.leaf.is-left::after { background: linear-gradient(270deg, oklch(0.25 0.03 60 / 0.22), oklch(0.25 0.03 60 / 0.07) 2.5%, oklch(0.25 0.03 60 / 0) 8%); }
+
+/* The light on a turning page, drawn by front.js: the shadow it casts and the sheen of its curl. */
+.curl {
+  position: absolute;
+  inset: 0 auto 0 calc(var(--page-w) * -1);
+  width: calc(var(--page-w) * 2);
+  pointer-events: none;
+  display: none;
+}
+.book.is-turning .curl { display: block; }
+.curl--cast { z-index: 3; }
+.curl--gloss { z-index: 5; }
+
+/* The back cover */
+.leaf--back {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  background: var(--ink);
+  color: var(--paper);
+  text-align: center;
+  cursor: default;
+}
+.leaf--back::after { background: linear-gradient(90deg, oklch(0 0 0 / 0.35), oklch(0 0 0 / 0) 4%); }
+.leaf--back .wordmark__mark { width: 1rem; fill: var(--ribbon-on-ink); }
+.leaf--back p.display { font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem); max-width: 9ch; }
+.leaf--back .back-actions { display: grid; justify-items: center; gap: var(--space-1); font-size: var(--text-s); font-weight: 500; }
+.leaf--back .textlink { text-decoration-color: var(--paper-line); }
+.leaf--back .textlink:hover { text-decoration-color: currentColor; }
+.leaf--back button.textlink { padding: 0; border: 0; background: none; font: inherit; color: var(--paper-soft); cursor: pointer; }
+.leaf--back :focus-visible { outline-color: var(--paper); }
+
+/* The caption: where you are, quietly. No buttons; the pages turn by hand. It holds one line, so nothing shifts. */
+
+.pager {
+  grid-area: pager;
+  width: 100%;
+  max-width: min(100%, 22rem);
+  min-height: 1.3em;
+  margin-top: var(--space-4);
+  font-size: var(--text-s);
+}
+@media (min-width: 80rem) {
+  .pager { max-width: none; margin-top: var(--space-5); }
+}
+.pager__caption {
+  min-width: 0;
+  min-height: 1.3em;
+  text-align: center;
+  line-height: 1.3;
+  color: var(--ink-soft);
+}
+.pager__caption b { font-weight: 600; color: var(--ink); }
+.pager__count { margin-left: var(--space-2); font-variant-numeric: tabular-nums; }
+
+/* Before the issue has loaded there is nothing to turn, so the pager waits (it holds its space, so nothing shifts).
+   The same goes for the issue line and the read links: their slots are reserved and filled once, from manifest.json. */
+.pager:not(.is-ready) { visibility: hidden; }
+.lead__meta:empty::before { content: "\00a0"; }
+.lead [data-issue-links]:not(.is-ready) { visibility: hidden; }
+
+/* While the issue loads, the top leaf is a blank sheet in the cover's place; it is replaced by the cover once. */
+.leaf--blank { background: var(--sheet); }
+
+/* A page image that never arrived: the sheet stays, with its number, so the turn still makes sense. */
+.leaf.is-missing img { visibility: hidden; }
+.leaf__missing {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  font: 400 var(--text-s)/1 var(--font-ui);
+  color: var(--ink-soft);
+}
+
+/* Nothing to show (no issues yet, or the issue list failed): the sheet carries one sentence and, if it helps, a retry. */
+.book__state {
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: var(--page-w);
+  translate: -50% 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  border-radius: var(--radius-paper);
+  background: var(--sheet);
+  text-align: center;
+  cursor: default;
+}
+.book__state .display { font-size: var(--display-s); max-width: 10ch; }
+.book__state p:not(.display) { max-width: 22ch; font-size: var(--text-s); color: var(--ink-soft); text-wrap: pretty; }
+.book__state .ghost { min-height: 44px; }
+.book.is-empty { cursor: default; }
+
+/* Kindle: the second beat */
+
+.kindle {
+  display: grid;
+  grid-template-areas: "head" "slab" "act";
+  justify-items: center;
+  text-align: center;
+  padding: var(--space-8) var(--gutter) var(--space-9);
+}
+
+.kindle__head { grid-area: head; display: grid; justify-items: center; gap: var(--space-4); max-width: 26rem; }
+.kindle__head h2 { font-size: var(--display-m); }
+.kindle__head p { color: var(--ink-soft); text-wrap: pretty; }
+.kindle__act { grid-area: act; display: grid; justify-items: center; gap: var(--space-3); margin-top: var(--space-6); }
+.kindle__note { font-size: var(--text-s); color: var(--ink-soft); }
+
+@media (min-width: 64rem) {
+  .kindle {
+    grid-template-columns: minmax(0, 27rem) auto;
+    grid-template-areas: "head slab" "act slab";
+    justify-content: center;
+    justify-items: start;
+    align-content: center;
+    align-items: end;
+    column-gap: var(--space-9);
+    padding-block: var(--space-8) var(--space-10);
+    text-align: left;
+  }
+  .kindle__head { justify-items: start; align-self: end; }
+  .kindle__act { justify-items: start; align-self: start; }
+}
+
+/* A Kindle, turned on its side: page 16 of this issue, at reading size, on e-ink */
+
+.slab {
+  grid-area: slab;
+  width: min(100%, 26rem);
+  margin-top: var(--space-6);
+  padding: 0.6875rem 1.625rem 0.6875rem 0.6875rem;
+  border-radius: var(--radius-device);
+  background: linear-gradient(160deg, var(--device-edge), var(--device) 40%);
+  box-shadow: inset 0 0 0 1px oklch(1 0 0 / 0.06), var(--shadow-device);
+}
+@media (min-width: 64rem) {
+  .slab { width: clamp(30rem, 40vw, 38rem); margin: 0; padding: 0.875rem 2rem 0.875rem 0.875rem; }
+}
+
+.slab__screen {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 5px;
+  background: var(--eink);
+  box-shadow: inset 0 1px 3px oklch(0 0 0 / 0.28);
+}
+/* The issue's last page from meta.json, read on e-ink: the top of the page across its full width (any page layout
+   reads as a page this way), greyscale and a touch of contrast, multiplied into the screen's grey. */
+.slab__screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0;
+  filter: grayscale(1) contrast(1.12);
+  mix-blend-mode: multiply;
+}
+.slab__screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--eink);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* The page arriving: an e-ink refresh, once, when the device scrolls into view. Default is the finished screen. */
+.slab__screen.is-refreshing img { animation: eink-flash var(--dur-refresh) steps(1, end) both; }
+.slab__screen.is-refreshing::after { animation: eink-settle var(--dur-refresh) var(--ease-out) both; }
+
+@keyframes eink-flash {
+  0% { filter: grayscale(1) invert(1) contrast(1.3); }
+  16%, 100% { filter: grayscale(1) contrast(1.12); }
+}
+@keyframes eink-settle {
+  0%, 16% { opacity: 0.6; }
+  100% { opacity: 0; }
+}
+
+/* Footer: the close, on ink */
+
+.foot {
+  margin-top: auto;
+  display: grid;
+  gap: var(--space-6);
+  padding: var(--space-8) var(--gutter) max(var(--space-6), env(safe-area-inset-bottom));
+  background: var(--ink);
+  color: var(--paper);
+}
+.foot ::selection { background: var(--paper); color: var(--ink); }
+.foot :focus-visible { outline-color: var(--paper); }
+.foot__close { font-size: var(--display-m); }
+.foot__rows {
+  display: grid;
+  gap: var(--space-2);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--paper-line);
+  font-size: var(--text-s);
+  color: var(--paper-soft);
+}
+.foot__rows p { text-wrap: pretty; }
+.foot a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--paper);
+  text-decoration: underline;
+  text-decoration-color: var(--paper-line);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.35em;
+  transition: text-decoration-color var(--dur-micro) ease;
+}
+.foot a:hover { text-decoration-color: currentColor; }
+
+@media (min-width: 64rem) {
+  .foot { grid-template-columns: 1fr auto; align-items: end; padding-top: var(--space-9); }
+  .foot__close { grid-column: 1 / -1; }
+  .foot__rows { grid-column: 1 / -1; grid-template-columns: 1fr auto; column-gap: var(--space-6); }
+  .foot__rows .foot__support { text-align: right; }
+}
+
+/* Subscribe: one step on screen at a time */
+
+.flow {
+  width: min(100%, 30rem);
+  margin-inline: auto;
+  padding: var(--space-5) var(--gutter) var(--space-9);
+}
+@media (min-width: 64rem) {
+  .flow { padding-top: var(--space-8); }
+}
+
+.flow__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  font-size: var(--text-s);
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: 500 var(--text-s)/1 var(--font-ui);
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+}
+.back svg { width: 1rem; height: 1rem; }
+.back:hover span { text-decoration: underline; text-underline-offset: 0.3em; text-decoration-thickness: 1px; }
+
+.progress[hidden], .done-mark[hidden] { display: none; }
+.progress {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-1);
+  margin: var(--space-2) 0 var(--space-8);
+  padding: 0;
+  list-style: none;
+}
+.progress li {
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--line);
+  transition: background-color var(--dur-step) ease;
+}
+.progress li.is-done, .progress li.is-current { background: var(--ink); }
+
+.step { display: grid; gap: var(--space-4); }
+.step[hidden] { display: none; }
+.step.is-entering { animation: step-in var(--dur-step) var(--ease-out) both; }
+.step h1 { font-size: var(--display-s); }
+.step h1:focus { outline: none; }
+.step > p { color: var(--ink-soft); max-width: 34ch; text-wrap: pretty; }
+.step > p strong { color: var(--ink); font-weight: 600; }
+.step .pill { margin-top: var(--space-4); width: 100%; }
+
+@keyframes step-in {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+.field { display: grid; gap: var(--space-2); margin-top: var(--space-4); }
+.field label { font-size: var(--text-s); font-weight: 500; }
+
+.input {
+  display: flex;
+  align-items: center;
+  min-height: 3.25rem;
+  border: 1px solid var(--field-edge);
+  border-radius: var(--radius-field);
+  background: var(--paper);
+  transition: border-color var(--dur-micro) ease, box-shadow var(--dur-micro) ease;
+}
+.input:focus-within { border-color: var(--ink); box-shadow: var(--ring); }
+.input input {
+  flex: 1;
+  min-width: 0;
+  height: 3.25rem;
+  padding: 0 var(--space-4);
+  border: 0;
+  background: transparent;
+  font: 400 1rem/1 var(--font-ui);
+  color: var(--ink);
+  outline: none;
+}
+.input input::placeholder { color: var(--ink-soft); opacity: 1; }
+.input__suffix { padding-right: var(--space-4); color: var(--ink-soft); white-space: nowrap; }
+.input[data-invalid] { border-color: var(--alert); }
+
+.error { font-size: var(--text-s); font-weight: 500; color: var(--alert); text-wrap: pretty; }
+.error[hidden] { display: none; }
+
+.sender {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  border: 1px solid var(--field-edge);
+  border-radius: var(--radius-field);
+  background: var(--paper);
+}
+.sender code { font: 600 0.9375rem/1.35 var(--font-ui); overflow-wrap: anywhere; min-width: 0; } /* the address wraps rather than pushing Copy off a phone */
+
+.chip {
+  flex: none;
+  min-height: 44px;
+  min-width: 4.5rem;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--field-edge);
+  border-radius: var(--radius-pill);
+  background: var(--issue);
+  font: 600 var(--text-s)/1 var(--font-ui);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color var(--dur-micro) ease, transform var(--dur-micro) var(--ease-out);
+}
+.chip:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) {
+  .chip:hover { background: var(--issue-sunk); }
+}
+
+.outlink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 44px;
+  justify-self: start;
+  font-size: var(--text-s);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 0.35em;
+  text-decoration-thickness: 1px;
+}
+.outlink svg { width: 0.875rem; height: 0.875rem; }
+.outlink:hover { text-decoration-color: currentColor; }
+
+/* Until delivery is live (js/subscribe.js DELIVERY), the flow says so before step 1, in the page's own voice. */
+.flow__notice {
+  margin: calc(var(--space-6) * -1) 0 var(--space-6);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-field);
+  font-size: var(--text-s);
+  line-height: 1.45;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+.flow__notice[hidden] { display: none; }
+.flow__notice a, .error a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.3em; }
+
+.done-mark { width: 2.5rem; height: 2.5rem; color: var(--ink); }
+
+/* A/B QA switcher. Never shown to visitors: only with ?ab=qa (see js/ab.js). Tooling, and it looks like it: a dashed
+   chip in the corner that opens to A B C D. */
+
+.ab {
+  position: fixed;
+  right: max(var(--space-1), env(safe-area-inset-right));
+  top: 50%;
+  z-index: 20;
+  translate: 0 -50%;
+  font: 600 var(--text-xs)/1 var(--font-ui);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.ab__toggle, .ab__panel {
+  border: 1px dashed var(--ink-soft);
+  background: var(--paper);
+  box-shadow: 0 6px 16px -10px oklch(0.22 0.025 55 / 0.55);
+}
+
+.ab__toggle {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 2px;
+  width: 44px;
+  min-height: 52px;
+  padding: 0;
+  border-radius: 22px;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.86;
+  transition: opacity var(--dur-micro) ease, transform var(--dur-micro) var(--ease-out);
+}
+.ab__toggle:active { transform: scale(0.97); }
+.ab[data-open] .ab__toggle { opacity: 1; }
+.ab__tag { font-size: 0.625rem; font-weight: 500; letter-spacing: 0.06em; color: var(--ink-soft); }
+.ab__cur { min-width: 1ch; font-size: var(--text-s); }
+
+.ab__panel {
+  position: absolute;
+  right: calc(100% + var(--space-2));
+  top: 50%;
+  margin-top: -27px;
+  display: flex;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border-radius: var(--radius-pill);
+  transform-origin: 100% 50%;
+  opacity: 0;
+  transform: translateX(4px) scale(0.96);
+  visibility: hidden;
+  /* Closing is quicker than opening, and visibility flips only once the fade is done. */
+  transition: opacity 120ms ease, transform 120ms var(--ease-out), visibility 0s linear 120ms;
+}
+.ab[data-open] .ab__panel {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition: opacity var(--dur-micro) ease, transform var(--dur-micro) var(--ease-out), visibility 0s;
+}
+
+.ab__opt {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font: 600 var(--text-s)/1 var(--font-ui);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color var(--dur-micro) ease, color var(--dur-micro) ease, transform var(--dur-micro) var(--ease-out);
+}
+.ab__opt:active { transform: scale(0.94); }
+.ab__opt[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+@media (hover: hover) and (pointer: fine) {
+  .ab__toggle:hover { opacity: 1; }
+  .ab__opt[aria-pressed="false"]:hover { background: var(--issue); }
+}
+
+/* Desktop has room in the corner: the chip sits bottom-right and opens upwards. */
+@media (min-width: 64rem) {
+  .ab { top: auto; bottom: max(var(--space-3), env(safe-area-inset-bottom)); right: max(var(--space-3), env(safe-area-inset-right)); translate: none; }
+  .ab__toggle { display: inline-flex; align-items: center; gap: var(--space-2); width: auto; min-height: 44px; padding: 0 var(--space-4); border-radius: var(--radius-pill); }
+  .ab__tag { font-size: var(--text-xs); }
+  .ab__panel { right: 0; top: auto; bottom: calc(100% + var(--space-2)); margin-top: 0; transform-origin: 100% 100%; transform: translateY(4px) scale(0.96); }
+  /* The page can always scroll clear of the chip. */
+  .has-ab .foot { padding-bottom: calc(max(var(--space-6), env(safe-area-inset-bottom)) + 3.5rem); }
+}
+
+/* Keyboard-initiated changes never animate (chrome.js keeps the last input type on <html>), as on every other page. */
+html[data-input="key"] *, html[data-input="key"] *::before, html[data-input="key"] *::after { transition-duration: 0s !important; }
+
+/* Reduced motion: nothing travels. Colour and opacity changes stay, briefly. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+  .spread { transition: none !important; }
+  .stack::before, .stack::after, .pill, .ghost, .chip, .ab__toggle, .ab__panel, .ab__opt, .pill svg, .ghost svg { transition-property: opacity, background-color, color, border-color, box-shadow !important; }
+  .pill:active, .ghost:active, .chip:active, .ab__toggle:active, .ab__opt:active { transform: none; }
+  .step.is-entering { animation-name: step-fade; }
+}
+@keyframes step-fade { from { opacity: 0; } to { opacity: 1; } }

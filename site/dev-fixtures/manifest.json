@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "generated_at": "2026-10-15T18:00:00Z",
+  "latest": 3,
+  "issues": [
+    {
+      "issue": 3,
+      "title": "The agents outgrew git",
+      "date": "2026-10-24",
+      "pages": 16,
+      "cover_image": "pages/p-01.webp"
+    },
+    {
+      "issue": 2,
+      "title": "The night-shift model",
+      "date": "2026-10-17",
+      "pages": 16,
+      "cover_image": "pages/p-01.webp"
+    },
+    {
+      "issue": 1,
+      "title": "The Friday receipts machine",
+      "date": "2026-10-10",
+      "pages": 16,
+      "cover_image": "pages/p-01.webp"
+    }
+  ]
+}

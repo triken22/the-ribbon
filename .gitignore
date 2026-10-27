@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+
+# Secrets: never commit real values. Only the *.example files are tracked.
+*.env
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+
+# Local state and tooling
+node_modules/
+.wrangler/
+publish.log
+*.log
+.DS_Store

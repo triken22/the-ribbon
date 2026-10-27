@@ -1,0 +1,306 @@
+/* The Ribbon — public site. Paper-and-ink, hairline rules, one red. See DESIGN.md. */
+:root{
+  --paper:#F7F4EC;--card:#FBF9F4;--ink:#1A1A1A;--ink2:#3A3835;--mute:#5F5C57;--line:#B9B5AC;--rule:#D8D5CE;--panel:#E8ECEF;--red:#C1121F;--blue:#2F5D8A;
+  --tone:#E7E2D5; /* cover placeholder: a slightly darker paper while an image loads or if it fails */
+  --serif:'Newsreader','Newsreader Fallback',Georgia,'Times New Roman',serif;
+  --cond:'IBM Plex Sans Condensed','IBM Plex Sans Condensed Fallback','Arial Narrow',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --pad:40px;
+  /* the one register grid: a narrow column for covers and row facts, a wide one for titles and reading */
+  --cols:minmax(0,min(24rem,38%)) minmax(0,1fr);--gutter:clamp(40px,5vw,72px);--section:clamp(64px,8vw,104px);
+  --lift:0 1px 0 rgba(26,26,26,.08),0 18px 30px -20px rgba(26,26,26,.55);
+  --lift-up:0 1px 0 rgba(26,26,26,.08),0 26px 36px -22px rgba(26,26,26,.5);
+  /* motion: strong curves, short durations (Emil Kowalski's tables). Colour changes use plain `ease`. */
+  --ease-out:cubic-bezier(0.23,1,0.32,1);--ease-in-out:cubic-bezier(0.77,0,0.175,1);--ease-drawer:cubic-bezier(0.32,0.72,0,1);
+  --t-press:160ms;--t-state:150ms;--t-pop:180ms;--t-enter:240ms;
+}
+@view-transition{navigation:auto} /* same-origin page changes crossfade instead of flashing; ignored where unsupported */
+::view-transition-old(root),::view-transition-new(root){animation-duration:200ms;animation-timing-function:var(--ease-out)}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;caret-color:var(--red);accent-color:var(--red);scrollbar-color:var(--line) var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.4;min-height:100vh;text-rendering:optimizeLegibility}
+a{color:var(--ink);text-underline-offset:.2em;text-decoration-thickness:1px}
+a,button{touch-action:manipulation}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+button,.btn,.chip{-webkit-user-select:none;user-select:none}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+::selection{background:var(--red);color:var(--paper)}
+h1,h2,h3{text-wrap:balance}
+.lbl{font-family:var(--cond);font-weight:600;font-size:12px;letter-spacing:.13em;text-transform:uppercase}
+.wrap{max-width:1320px;margin:0 auto;padding:0 var(--pad)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:8px;top:-60px;background:var(--ink);color:var(--paper);padding:10px 14px;z-index:100;font-family:var(--cond);font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:13px}
+.skip:focus{top:8px;color:var(--paper)}
+.note{margin:0;font-size:17px;line-height:1.5;color:var(--mute)}
+[hidden]{display:none!important}
+
+/* masthead: the nameplate, the tagline, the nav on the baseline, then a double rule. Static HTML on every page. */
+.masthead{padding-top:var(--pad)}
+.masthead .row{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-bottom:18px;border-bottom:2px solid var(--ink)}
+.masthead .rule3{height:3px;border-bottom:1px solid var(--ink)}
+.brand{text-decoration:none;display:flex;flex-direction:column;gap:6px;color:var(--ink)}
+.brand .t{margin:0;font-weight:800;font-size:60px;line-height:.92;letter-spacing:-.025em}
+.brand .s{margin:0;font-style:italic;font-size:19px;color:var(--ink2)}
+.compact .masthead{padding-top:28px}.compact .masthead .row{padding-bottom:14px}
+.compact .brand .t{font-size:38px;line-height:.95;letter-spacing:-.02em}.compact .brand .s{font-size:16px}
+.nav{display:flex;gap:28px;font-size:13px}
+.nav a{text-decoration:none;color:var(--ink);padding:12px 0;border-bottom:2px solid transparent;transition:border-color var(--t-state) ease}
+.nav a[aria-current]{border-bottom-color:var(--red)}
+
+/* buttons, links, chips. Press feedback: a 0.97 scale on :active (pointer only, see html[data-input]). */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 20px;background:var(--ink);color:var(--paper);border:1px solid var(--ink);font-family:var(--cond);font-weight:600;font-size:13px;line-height:1.2;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background-color var(--t-state) ease,border-color var(--t-state) ease,color var(--t-state) ease,transform var(--t-press) var(--ease-out)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn .size{min-width:4.6em;text-align:right;font-weight:500;letter-spacing:.04em;font-variant-numeric:tabular-nums;opacity:.75}
+.btn svg{flex:none}
+.textlink{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-family:var(--cond);font-weight:600;font-size:16px;letter-spacing:.01em;color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);transition:color var(--t-state) ease,text-decoration-color var(--t-state) ease}
+.pdf,.file .name{display:inline-flex;align-items:baseline;gap:10px}
+.pdf .size,.file .size{font-family:var(--cond);font-weight:500;font-size:14px;color:var(--mute);font-variant-numeric:tabular-nums}
+.chip{min-height:36px;padding:0 12px;border:1px solid var(--line);background:transparent;cursor:pointer;font-family:var(--cond);font-weight:500;font-size:14px;letter-spacing:.02em;transition:background-color var(--t-state) ease,border-color var(--t-state) ease,color var(--t-state) ease,transform var(--t-press) var(--ease-out)}
+.chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.chip .n{margin-left:6px;font-size:12px;opacity:.7;font-variant-numeric:tabular-nums}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;border:1px solid var(--ink)}
+.seg button{min-height:40px;background:transparent;border:0;cursor:pointer;font-family:var(--cond);font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;transition:background-color var(--t-state) ease,color var(--t-state) ease}
+.seg button+button{border-left:1px solid var(--ink)}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.linkbtn{background:none;border:0;padding:0;min-height:44px;cursor:pointer;color:var(--ink);font-family:var(--cond);font-weight:600;font-size:15px;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:.2em;transition:color var(--t-state) ease,text-decoration-color var(--t-state) ease}
+html:not([data-input=key]) :is(.btn,.chip):active{transform:scale(.97)}
+a:not(.btn,.skip):active{color:var(--red)} /* touch has no hover and no tap highlight: links answer the press itself */
+/* The keyboard never waits on motion: after a key press every transition is instant until the pointer is used again. */
+html[data-input=key] *,html[data-input=key] *::before,html[data-input=key] *::after{transition-duration:0s!important}
+
+/* covers: the printed proportion; the image fades in when it has loaded so it never pops */
+.cover{position:relative;width:100%;aspect-ratio:1800/2548;background:var(--tone);overflow:hidden}
+.cover img{width:100%;height:100%;object-fit:cover;transition:opacity var(--t-enter) var(--ease-out)}
+.cover img[data-loading]{opacity:0}
+.cover.pending{background:transparent} /* loading placeholder: the space is held, nothing drawn */
+
+/* the lead: cover in the narrow column; title, cover line, one dateline band and the actions in the wide one.
+   Front page and issue page share it. */
+.lead{display:grid;grid-template-columns:var(--cols);column-gap:var(--gutter);align-items:start}
+.lead-cover{grid-column:1;grid-row:1;display:block;position:relative;transition:transform 150ms ease}
+.lead-cover .cover{box-shadow:var(--lift)}
+.lead-cover::after{content:'';position:absolute;inset:0;box-shadow:var(--lift-up);opacity:0;transition:opacity 150ms ease;pointer-events:none}
+.lead-body{grid-column:2;grid-row:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start}
+.lead-title{margin:0;font-weight:700;font-size:clamp(38px,1.5rem + 4.4vw,88px);line-height:1;letter-spacing:-.025em}
+.lead-deck{margin:16px 0 0;max-width:30ch;font-style:italic;font-size:clamp(21px,1rem + .9vw,27px);line-height:1.3;color:var(--ink2);text-wrap:balance}
+.dateline{align-self:stretch;display:flex;flex-wrap:wrap;margin:28px 0 0;padding:11px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule);font-family:var(--cond);font-weight:500;font-size:15px;line-height:1.4;color:var(--ink2);font-variant-numeric:tabular-nums lining-nums}
+.dateline>span+span::before,.facts>span+span::before{content:'·';margin:0 .55em;color:var(--mute)}
+.facts{margin:0;font-family:var(--cond);font-weight:500;font-size:15px;line-height:1.4;color:var(--ink2);font-variant-numeric:tabular-nums lining-nums}
+.lead-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px;margin-top:28px;min-height:50px}
+.lead-actions .btn{min-height:50px;padding:0 22px}
+.lead-links{display:flex;flex-wrap:wrap;gap:0 28px;margin:14px 0 0}
+/* empty, error and not-found states take the lead's place: a heading, a sentence, the way out */
+.lead-state{display:block;padding:8px 0 0}
+.lead-state .lead-title{font-size:clamp(36px,1.2rem + 2.6vw,60px)}
+.lead-state .lead-deck{max-width:40ch}
+.lead-state .btn{margin-top:24px}
+
+/* sections on the same grid, opened by a 1px ink rule (the archive list by the page's one 3px rule) */
+.block{display:grid;grid-template-columns:var(--cols);column-gap:var(--gutter);margin-top:var(--section);padding-top:16px;border-top:1px solid var(--ink)}
+.block.heavy{border-top-width:3px}
+.block h2{margin:0;font-weight:700;font-size:30px;line-height:1.15;letter-spacing:-.01em}
+.block-head{grid-column:1/-1;display:grid;grid-template-columns:subgrid;align-items:baseline}
+.block-head .textlink{grid-column:2;justify-self:end}
+.block-body{grid-column:2;min-width:0}
+.prose{margin:0;padding-top:3px;max-width:65ch;font-size:18px;line-height:1.6;color:var(--ink2)}
+.index{grid-column:1/-1;list-style:none;margin:12px 0 0;padding:0;border-top:1px solid var(--rule)}
+.entry{display:grid;grid-template-columns:var(--cols);column-gap:var(--gutter);align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:var(--ink)}
+.entry-title{grid-column:2;grid-row:1;font-weight:600;font-size:22px;line-height:1.25;letter-spacing:-.005em;text-decoration:underline;text-decoration-color:transparent;transition:color var(--t-state) ease,text-decoration-color var(--t-state) ease}
+.entry-meta{grid-column:1;grid-row:1}
+
+footer.foot{margin-top:72px;padding-bottom:40px}
+footer.foot .in{border-top:2px solid var(--ink);padding-top:16px;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+footer.foot .t{font-weight:800;font-size:22px;letter-spacing:-.01em}
+footer.foot .m{font-family:var(--cond);font-size:14px;color:var(--mute);font-variant-numeric:tabular-nums}
+
+/* front, library and issue pages. While main is busy only the lead's held space shows: what follows it appears once the
+   lead is final, so late data never pushes visible content down (layout shift 0). Without scripting everything shows. */
+.front,.inner{padding-top:clamp(28px,3.5vw,44px)}
+@media (scripting:enabled){main[aria-busy=true] .about,main[aria-busy=true]~.foot{display:none}}
+
+/* library: filters in the narrow column, issues in the wide one */
+.libhead{display:flex;justify-content:space-between;align-items:baseline;gap:8px 24px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--ink)}
+.page-title{margin:0;font-weight:700;font-size:clamp(36px,1.2rem + 2.6vw,60px);line-height:1;letter-spacing:-.025em}
+.libcount{margin:0;min-height:21px}
+.libbody{display:grid;grid-template-columns:var(--cols);column-gap:var(--gutter);margin-top:28px;align-items:start}
+.filters{grid-column:1;display:flex;flex-direction:column;gap:28px;min-width:0}
+.filters fieldset{border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;min-width:0}
+.filters legend,.searchbox label{padding:0;font-size:12px;color:var(--ink2)}
+.filters legend{width:100%;padding-bottom:10px;margin-bottom:2px;border-bottom:1px solid var(--rule)}
+.filters .chips{display:flex;gap:8px;flex-wrap:wrap}
+.searchbox{position:relative;display:flex;flex-direction:column;gap:8px}
+.search{width:100%;min-height:44px;border:0;border-bottom:1px solid var(--ink);border-radius:0;background:transparent;padding:8px 28px 8px 0;font-family:var(--serif);font-size:19px;color:var(--ink);-webkit-appearance:none;appearance:none}
+.search::placeholder{color:var(--mute)}
+.search:focus-visible{outline-offset:4px}
+.searchbox svg{position:absolute;right:2px;bottom:12px;pointer-events:none}
+.fopts{display:flex;flex-direction:column;gap:28px}
+.filtertoggle{display:none}
+.ednote{margin:0;font-family:var(--cond);font-size:14px;line-height:1.45;color:var(--mute)}
+.clearbtn{align-self:flex-start}
+.results{grid-column:2;min-width:0}
+.rhead{display:flex;justify-content:space-between;align-items:center;gap:12px 16px;flex-wrap:wrap;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.rhead .facts{margin:0}
+.viewseg{width:168px}
+#out{min-height:120px}
+#out>.note{padding-top:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr));gap:44px 32px;margin-top:28px}
+.card{display:flex;flex-direction:column;min-width:0}
+.card-link{display:flex;flex-direction:column;text-decoration:none;color:var(--ink)}
+.card-link .cover{box-shadow:0 1px 0 rgba(26,26,26,.08),0 12px 22px -16px rgba(26,26,26,.6);transition:transform 150ms ease}
+.card-title{display:block;margin-top:16px;padding-top:10px;border-top:1px solid var(--ink);font-weight:700;font-size:24px;line-height:1.1;letter-spacing:-.015em;transition:color var(--t-state) ease}
+.card-deck{margin:6px 0 0;font-style:italic;font-size:17px;line-height:1.3;color:var(--ink2)}
+.card .facts,.lrow .facts{margin-top:8px;font-size:14px}
+.card-links{display:flex;flex-wrap:wrap;gap:0 20px;margin:2px 0 0}
+.card-links .textlink{font-size:15px}
+.sortnote{font-family:var(--cond);font-size:14px;color:var(--mute)}
+.viewrow{display:flex;align-items:center;gap:16px}
+#out>.lead-state{padding-top:28px}
+.hit{margin:12px 0 0;background:var(--panel);padding:8px 10px;font-size:16px;line-height:1.35}
+.hit b{font-family:var(--cond);font-weight:600;font-size:14px;color:var(--blue);margin-right:6px;font-variant-numeric:tabular-nums}
+.greyed .card-link img,.greyed .lrow-thumb img{filter:grayscale(1) contrast(1.05)}
+.card-link img,.lrow-thumb img{transition:opacity var(--t-enter) var(--ease-out),filter 200ms ease}
+.list{list-style:none;margin:0;padding:0}
+.lrow{display:grid;grid-template-columns:72px minmax(0,1fr);column-gap:20px;align-items:start;padding:18px 0;border-bottom:1px solid var(--rule)}
+.lrow-thumb{display:block}
+.lrow-thumb .cover{box-shadow:0 1px 0 rgba(0,0,0,.06),0 6px 12px -8px rgba(0,0,0,.4)}
+.lrow-body{min-width:0}
+.lrow-title{font-weight:600;font-size:22px;line-height:1.25;text-decoration:none;color:var(--ink);transition:color var(--t-state) ease}
+.lrow .card-deck{margin-top:4px}
+
+/* issue page */
+.toc{grid-column:1/-1;list-style:none;margin:12px 0 0;padding:0;border-top:1px solid var(--rule)}
+.toc-sec{display:grid;grid-template-columns:var(--cols);column-gap:var(--gutter);padding:14px 0;border-bottom:1px solid var(--rule)}
+.toc-name{grid-column:1;padding-top:4px;font-family:var(--cond);font-weight:600;font-size:15px;color:var(--blue)}
+.toc-list{grid-column:2;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;min-width:0}
+.toc-item{display:grid;grid-template-columns:2.4em minmax(0,1fr);column-gap:12px;align-items:baseline}
+.toc-p{font-family:var(--cond);font-weight:600;font-size:17px;color:var(--red);font-variant-numeric:tabular-nums lining-nums;text-align:right}
+.toc-b{display:flex;flex-direction:column;gap:6px;min-width:0}
+.toc-t{font-size:21px;line-height:1.25;text-decoration:underline;text-decoration-color:transparent;transition:color var(--t-state) ease,text-decoration-color var(--t-state) ease}
+.toc-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:var(--cond);font-size:14px;color:var(--mute)}
+.credits{grid-column:2;margin:0;padding-top:3px;max-width:65ch;font-size:16px;line-height:1.55;color:var(--mute)}
+.pgrid{grid-column:2;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:18px 12px;padding-top:6px;min-width:0}
+.pg{display:flex;flex-direction:column;gap:6px;align-items:center;text-decoration:none;color:var(--ink2);font-family:var(--cond);font-weight:500;font-size:13px;font-variant-numeric:tabular-nums}
+.pg .cover{background:var(--card);box-shadow:0 1px 0 rgba(0,0,0,.06),0 6px 12px -8px rgba(0,0,0,.4);transition:transform 150ms ease}
+.specs{margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
+.specs>div{padding:10px 14px 10px 0;display:flex;flex-direction:column;gap:2px}
+.specs>div+div{padding-left:14px;border-left:1px solid var(--rule)}
+.specs dt{font-family:var(--cond);font-size:14px;color:var(--mute)}
+.specs dd{margin:0;font-family:var(--cond);font-weight:600;font-size:16px;font-variant-numeric:tabular-nums}
+.files{list-style:none;margin:18px 0 0;padding:0}
+.file{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px;padding:12px 0;border-bottom:1px solid var(--rule)}
+.file .textlink{font-size:17px}
+.file code{font-family:var(--mono);font-size:12.5px;color:var(--mute);overflow-wrap:anywhere}
+.print-how{margin:18px 0 0;max-width:60ch;font-size:18px;line-height:1.55;color:var(--ink2)}
+
+/* source credit: chip + hover/focus card (built from our own metadata only) */
+.src{position:relative;display:inline-block}
+.src>a{display:inline-flex;align-items:center;gap:8px;min-height:28px;padding:0 8px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none;font-family:var(--cond);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;transition:border-color var(--t-state) ease,color var(--t-state) ease}
+.src>a:focus-visible{border-color:var(--red);color:var(--red)}
+.src .h{font-family:var(--mono);text-transform:none;letter-spacing:0;font-weight:400;color:var(--mute);font-size:11.5px}
+.src>a:focus-visible .h{color:inherit}
+.src svg{flex:none}
+.src-card{position:fixed;left:0;top:0;z-index:60;width:min(320px,calc(100vw - 32px));background:var(--card);border:1px solid var(--ink);border-top:2px solid var(--red);padding:14px 16px 12px;box-shadow:0 18px 30px -20px rgba(0,0,0,.55);display:none;pointer-events:none;text-transform:none;letter-spacing:0;white-space:normal;text-align:left}
+.src-card .au{font-family:var(--cond);font-weight:600;font-size:13px;color:var(--ink);display:flex;gap:8px;flex-wrap:wrap;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:8px}
+.src-card .hd{font-family:var(--mono);font-weight:400;color:var(--mute);font-size:12px}
+.src-card .sn{display:block;font-family:var(--serif);font-size:17px;line-height:1.4;color:var(--ink);margin:10px 0}
+.src-card .go{display:inline-flex;align-items:center;gap:6px;font-family:var(--cond);font-weight:600;font-size:14px;color:var(--red)}
+
+/* hover: pointer devices only, so a tap never leaves a stuck hover. Colour changes and the paper lift run on plain `ease`. */
+@media (hover:hover) and (pointer:fine){
+  a:hover{color:var(--red)}
+  .skip:hover{color:var(--paper)}
+  .btn:hover{background:var(--red);border-color:var(--red);color:var(--paper)}
+  .btn.ghost:hover{background:transparent;color:var(--red);border-color:var(--red)}
+  .textlink:hover,.linkbtn:hover{color:var(--red);text-decoration-color:currentColor}
+  .chip:hover{border-color:var(--ink)}
+  .chip[aria-pressed=true]:hover{color:var(--paper)}
+  .nav a:hover{border-bottom-color:var(--red);color:var(--ink)}
+  .brand:hover{color:var(--ink)}
+  a.lead-cover:hover{transform:translateY(-6px);transition-duration:200ms} /* rises in 200ms, settles back in 150ms */
+  a.lead-cover:hover::after{opacity:1;transition-duration:200ms}
+  .entry:hover .entry-title,.toc-t:hover{color:var(--red);text-decoration-color:currentColor}
+  .card-link:hover .card-title,.lrow-title:hover{color:var(--red)}
+  .card-link:hover .cover{transform:translateY(-4px);transition-duration:200ms}
+  .pg:hover{color:var(--red)}
+  .pg:hover .cover{transform:translateY(-4px);transition-duration:200ms}
+  .src>a:hover{border-color:var(--red);color:var(--red)}
+  .src>a:hover .h{color:inherit}
+}
+
+/* content that arrives after a fetch settles in once instead of popping */
+@keyframes wb-arrive{from{opacity:0;transform:translateY(6px)}}
+@keyframes wb-fade{from{opacity:0}}
+.arrive{animation:wb-arrive var(--t-enter) var(--ease-out) backwards}
+.fadein{animation:wb-fade var(--t-enter) var(--ease-out) backwards}
+/* Reduced motion: no travel or scale anywhere; opacity fades that stop content popping and colour changes stay. */
+@media (prefers-reduced-motion:reduce){
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation-duration:150ms}
+  .arrive{animation-name:wb-fade}
+  html :is(.btn,.chip):active{transform:none}
+  .lead-cover,.card-link .cover,.pg .cover{transition:none;transform:none!important}
+  a.lead-cover:hover::after{opacity:0}
+}
+
+/* ---------- narrower screens ---------- */
+@media (max-width:1023px){
+  /* the two PDF buttons stack at one width (no ragged wrap); room reserved so the links below don't jump */
+  .lead-actions{flex-direction:column;align-items:stretch;align-self:stretch;max-width:22rem;min-height:112px}
+  .lead-actions .btn{justify-content:space-between}
+  .lead-state .lead-actions,.lead-actions.one{min-height:50px}
+  .pgrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  :root{--pad:20px}
+  .brand .t{font-size:40px}.brand .s{font-size:17px}
+  .compact .brand .t{font-size:30px}
+}
+@media (max-width:720px){
+  :root{--cols:minmax(0,1fr)}
+  .front,.inner{padding-top:16px}
+  .masthead .row{row-gap:4px;padding-bottom:10px}
+  .lead-cover{width:min(10.5rem,44vw)}
+  .lead-body{grid-column:1;grid-row:2;margin-top:14px}
+  .lead-deck{margin-top:8px}
+  .dateline{margin-top:14px;padding:9px 0}
+  .lead-actions{max-width:none;margin-top:14px}
+  .block h2{font-size:28px}
+  .block-head{display:contents}
+  .block-head .textlink,.block-body,.prose,.pgrid,.credits{grid-column:1;justify-self:start}
+  .block-head .textlink{order:2;margin-top:12px}
+  .block-body,.prose,.pgrid,.credits{margin-top:12px}
+  .pgrid{justify-self:stretch}
+  .entry{padding:16px 0}
+  .entry-title,.entry-meta{grid-column:1;grid-row:auto}
+  .entry-title{font-size:21px}
+  .entry-meta{margin-top:4px}
+  .prose{font-size:17px}
+  .libbody{margin-top:20px;row-gap:24px}
+  .filters,.results{grid-column:1}
+  .filters{gap:20px}
+  .filtertoggle{display:inline-flex;align-items:center;align-self:flex-start;min-height:44px}
+  .fopts{display:none}.filters.open .fopts{display:flex}
+  .sortnote{display:none}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 16px}
+  .card-title{font-size:20px}
+  .card-deck{font-size:16px}
+  .toc-sec{padding:14px 0 16px}
+  .toc-name{padding:0 0 8px}
+  .toc-list{grid-column:1}
+  .toc-item{grid-template-columns:2em minmax(0,1fr)}
+  .toc-t{font-size:19px}
+  .specs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .specs>div:nth-child(3){padding-left:0;border-left:0}
+  .specs>div:nth-child(n+3){border-top:1px solid var(--rule)}
+  .print-how{font-size:17px}
+}
+
+/* Touch targets: at least 44x44 on touch and narrow screens, visuals unchanged where possible. */
+@media (hover:none),(max-width:900px){
+  .seg button{min-height:44px}
+  .src>a{min-height:44px;padding:0 12px}
+  .filters .chip,.toc-t,.lrow-title{position:relative}
+  .filters .chip::after{content:'';position:absolute;left:-4px;right:-4px;top:50%;height:44px;transform:translateY(-50%)}
+  .toc-t::after,.lrow-title::after{content:'';position:absolute;left:0;right:0;top:50%;min-height:44px;height:100%;transform:translateY(-50%)}
+}
+@media (hover:none){.src-card{display:none!important}}

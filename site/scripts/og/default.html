@@ -1,0 +1,41 @@
+<!doctype html>
+<!-- Source of site/public/og/default.png (1200x630) and the apple-touch icon. Rendered by render_og.mjs; never shipped.
+     The front door in miniature: ochre ground, the ribbon wordmark, the variant-A promise (what crawlers see) in Instrument Serif. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../public/css/fonts.css">
+<style>
+  /* Tokens copied from css/front.css (the front door). Re-render after they change. */
+  :root{--issue:oklch(0.885 0.072 84);--ink:oklch(0.22 0.025 55);--ink-soft:oklch(0.4 0.04 62);--line-strong:oklch(0.22 0.025 55 / 0.42);
+    --ribbon:oklch(0.55 0.19 24);--paper:#F7F4EC;--red:#C1121F;--black:#1A1A1A;
+    --font-display:"Instrument Serif","Instrument Serif Fallback",Georgia,serif;--font-ui:"Schibsted Grotesk","Schibsted Grotesk Fallback",Arial,sans-serif}
+  *{box-sizing:border-box;margin:0}
+  html,body{background:var(--issue);color:var(--ink)}
+  .card{width:1200px;height:630px;padding:64px 80px 60px;display:flex;flex-direction:column;justify-content:space-between;background:var(--issue)}
+  .wordmark{display:flex;align-items:center;gap:14px;font-family:var(--font-ui);font-weight:600;font-size:30px;letter-spacing:-.01em}
+  .wordmark svg{width:21px;height:31px;fill:var(--ribbon)}
+  h1{font-family:var(--font-display);font-weight:400;font-size:118px;line-height:.98;letter-spacing:-.015em}
+  h1 span{display:block}
+  .foot{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line-strong);padding-top:20px;
+    font-family:var(--font-ui);font-size:24px;font-feature-settings:"tnum" 1}
+  .foot b{font-weight:600}
+  .foot span{color:var(--ink-soft)}
+  /* apple-touch-icon: the favicon mark at 180px (iOS rounds the corners itself) */
+  .icon{width:180px;height:180px;background:var(--black);position:relative}
+  .icon .m{position:absolute;left:51px;top:28px;width:78px;height:124px}
+  .icon .m .tab{height:22px;background:var(--red)}
+  .icon .m .body{height:102px;background:var(--paper);clip-path:polygon(0 0,100% 0,100% 100%,50% 77%,0 100%)}
+</style>
+</head>
+<body>
+<div class="card" id="og">
+  <p class="wordmark"><svg viewBox="0 0 11 16" aria-hidden="true"><path d="M0 0h11v16l-5.5-4.2L0 16z"/></svg>The Ribbon</p>
+  <div>
+    <h1><span>Stay current on tech.</span><span>Skip the scroll.</span></h1>
+  </div>
+  <p class="foot"><b>Free on your Kindle every Saturday</b><span>16 pages · AI and tech this week</span></p>
+</div>
+<div class="icon" id="icon"><div class="m"><div class="tab"></div><div class="body"></div></div></div>
+</body>
+</html>

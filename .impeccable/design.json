@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-23T18:06:10Z",
+  "title": "Design System: The Ribbon",
+  "extensions": {
+    "colorMeta": {
+      "red": { "role": "primary", "displayName": "Cover Red", "canonical": "#C1121F", "tonalRamp": ["oklch(15.0% 0.202 25.9)", "oklch(26.4% 0.202 25.9)", "oklch(37.9% 0.202 25.9)", "oklch(49.3% 0.202 25.9)", "oklch(60.7% 0.202 25.9)", "oklch(72.1% 0.202 25.9)", "oklch(83.6% 0.202 25.9)", "oklch(95.0% 0.202 25.9)"] },
+      "blue": { "role": "secondary", "displayName": "Index Blue", "canonical": "#2F5D8A", "tonalRamp": ["oklch(15.0% 0.089 249.8)", "oklch(26.4% 0.089 249.8)", "oklch(37.9% 0.089 249.8)", "oklch(49.3% 0.089 249.8)", "oklch(60.7% 0.089 249.8)", "oklch(72.1% 0.089 249.8)", "oklch(83.6% 0.089 249.8)", "oklch(95.0% 0.089 249.8)"] },
+      "ink": { "role": "neutral", "displayName": "Press Ink", "canonical": "#1A1A1A", "tonalRamp": ["oklch(15.0% 0 0)", "oklch(26.4% 0 0)", "oklch(37.9% 0 0)", "oklch(49.3% 0 0)", "oklch(60.7% 0 0)", "oklch(72.1% 0 0)", "oklch(83.6% 0 0)", "oklch(95.0% 0 0)"] },
+      "ink2": { "role": "neutral", "displayName": "Soft Ink", "canonical": "#3A3835", "tonalRamp": ["oklch(15.0% 0.006 78.3)", "oklch(26.4% 0.006 78.3)", "oklch(37.9% 0.006 78.3)", "oklch(49.3% 0.006 78.3)", "oklch(60.7% 0.006 78.3)", "oklch(72.1% 0.006 78.3)", "oklch(83.6% 0.006 78.3)", "oklch(95.0% 0.006 78.3)"] },
+      "mute": { "role": "neutral", "displayName": "Pencil Grey", "canonical": "#5F5C57", "tonalRamp": ["oklch(15.0% 0.009 80.7)", "oklch(26.4% 0.009 80.7)", "oklch(37.9% 0.009 80.7)", "oklch(49.3% 0.009 80.7)", "oklch(60.7% 0.009 80.7)", "oklch(72.1% 0.009 80.7)", "oklch(83.6% 0.009 80.7)", "oklch(95.0% 0.009 80.7)"] },
+      "line": { "role": "neutral", "displayName": "Stone Line", "canonical": "#B9B5AC", "tonalRamp": ["oklch(15.0% 0.013 86.8)", "oklch(26.4% 0.013 86.8)", "oklch(37.9% 0.013 86.8)", "oklch(49.3% 0.013 86.8)", "oklch(60.7% 0.013 86.8)", "oklch(72.1% 0.013 86.8)", "oklch(83.6% 0.013 86.8)", "oklch(95.0% 0.013 86.8)"] },
+      "rule": { "role": "neutral", "displayName": "Hairline Grey", "canonical": "#D8D5CE", "tonalRamp": ["oklch(15.0% 0.010 87.5)", "oklch(26.4% 0.010 87.5)", "oklch(37.9% 0.010 87.5)", "oklch(49.3% 0.010 87.5)", "oklch(60.7% 0.010 87.5)", "oklch(72.1% 0.010 87.5)", "oklch(83.6% 0.010 87.5)", "oklch(95.0% 0.010 87.5)"] },
+      "panel": { "role": "neutral", "displayName": "Index Panel", "canonical": "#E8ECEF", "tonalRamp": ["oklch(15.0% 0.006 239.8)", "oklch(26.4% 0.006 239.8)", "oklch(37.9% 0.006 239.8)", "oklch(49.3% 0.006 239.8)", "oklch(60.7% 0.006 239.8)", "oklch(72.1% 0.006 239.8)", "oklch(83.6% 0.006 239.8)", "oklch(95.0% 0.006 239.8)"] },
+      "paper": { "role": "neutral", "displayName": "Book Paper", "canonical": "#F7F4EC", "tonalRamp": ["oklch(15.0% 0.011 89.7)", "oklch(26.4% 0.011 89.7)", "oklch(37.9% 0.011 89.7)", "oklch(49.3% 0.011 89.7)", "oklch(60.7% 0.011 89.7)", "oklch(72.1% 0.011 89.7)", "oklch(83.6% 0.011 89.7)", "oklch(95.0% 0.011 89.7)"] },
+      "card": { "role": "neutral", "displayName": "Proof Sheet", "canonical": "#FBF9F4", "tonalRamp": ["oklch(15.0% 0.007 88.6)", "oklch(26.4% 0.007 88.6)", "oklch(37.9% 0.007 88.6)", "oklch(49.3% 0.007 88.6)", "oklch(60.7% 0.007 88.6)", "oklch(72.1% 0.007 88.6)", "oklch(83.6% 0.007 88.6)", "oklch(95.0% 0.007 88.6)"] }
+    },
+    "typographyMeta": {
+      "nameplate": { "displayName": "Nameplate", "purpose": "The masthead title (the front page's h1); 40px at 900px and below, 38px compact on library and issue pages, 22px in the footer." },
+      "display": { "displayName": "Display", "purpose": "The lead issue's title on the front page, balanced wrap. One per page." },
+      "headline": { "displayName": "Headline", "purpose": "Section heads such as \"Earlier issues\"; 28px at 720px and below." },
+      "title": { "displayName": "Title", "purpose": "Issue titles in the archive list; 21px on phones." },
+      "deck": { "displayName": "Deck (italic)", "purpose": "Newsreader italic cover line under the lead title, Soft Ink, max 30ch." },
+      "body": { "displayName": "Body", "purpose": "Reading paragraphs, Soft Ink, max 65ch. Short interface text uses the page default of 18px at 1.4." },
+      "dateline": { "displayName": "Dateline", "purpose": "Issue number, date and page count with tabular lining figures, joined by Pencil Grey middle dots." },
+      "link": { "displayName": "Text Link", "purpose": "Standalone links such as \"Read online\" and \"Contents\", underlined in Stone Line." },
+      "button": { "displayName": "Button", "purpose": "Uppercase button labels; a file size inside the button drops to 500 weight, 0.04em, tabular, 75% opacity." },
+      "label": { "displayName": "Label", "purpose": "Uppercase navigation (13px in the masthead) and form legends and field labels (11px). Never a kicker above a heading." },
+      "data": { "displayName": "Data (mono)", "purpose": "Literal machine strings only: PDF file names, @handles, SHA or build hashes." }
+    },
+    "shadows": [
+      { "name": "lead-cover-lift", "value": "0 1px 0 rgba(26,26,26,.08), 0 18px 30px -20px rgba(26,26,26,.55)", "purpose": "Under the front page's lead cover; the only lift on the front page." },
+      { "name": "lead-cover-lift-hover", "value": "0 1px 0 rgba(26,26,26,.08), 0 26px 36px -22px rgba(26,26,26,.5)", "purpose": "Lead cover on hover, with a 6px rise over 0.35s." },
+      { "name": "library-cover-lift", "value": "0 1px 0 rgba(26,26,26,.08), 0 12px 22px -16px rgba(26,26,26,.6)", "purpose": "Cover cards in the library." },
+      { "name": "issue-hero-cover", "value": "0 1px 0 rgba(26,26,26,.08), 0 20px 34px -22px rgba(26,26,26,.6)", "purpose": "The cover on the issue page." },
+      { "name": "page-thumbnail", "value": "0 1px 0 rgba(0,0,0,.06), 0 6px 12px -8px rgba(0,0,0,.4)", "purpose": "Page thumbnails in the issue page's page grid." },
+      { "name": "reader-page", "value": "0 1px 0 rgba(0,0,0,.06), 0 14px 30px -16px rgba(40,30,10,.45)", "purpose": "Pages on the reader's stage (light mode)." },
+      { "name": "floating-card", "value": "0 18px 30px -20px rgba(0,0,0,.55)", "purpose": "The source hover card." },
+      { "name": "floating-popover", "value": "0 18px 40px -24px rgba(0,0,0,.55)", "purpose": "The reader's download popover." }
+    ],
+    "motion": [
+      { "name": "state-change", "value": "150ms", "purpose": "Colour, border and underline-colour transitions on links, buttons, chips and nav." },
+      { "name": "ease-paper", "value": "cubic-bezier(.2,.7,.2,1)", "purpose": "Default easing for cover and thumbnail rises, section fades and progress bars." },
+      { "name": "ease-lift", "value": "cubic-bezier(.16,1,.3,1)", "purpose": "The front page's lead cover rise (350ms)." },
+      { "name": "section-fade", "value": "550ms cubic-bezier(.2,.7,.2,1), opacity 0 to 1 with a 10px rise, fill-mode backwards", "purpose": "Section entrance on library and issue pages; the front page lead has no entrance." },
+      { "name": "page-turn", "value": "620ms cubic-bezier(.45,.05,.25,1)", "purpose": "The reader's 3D page flip." },
+      { "name": "reduced-motion", "value": "prefers-reduced-motion: reduce", "purpose": "Disables every animation and transition." }
+    ],
+    "breakpoints": [
+      { "name": "pdf-stack", "value": "1023px" },
+      { "name": "narrow", "value": "900px" },
+      { "name": "front-single-column", "value": "720px" },
+      { "name": "library-small", "value": "560px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary PDF Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Square ink button carrying its file size; fills red on hover. The front page's main action.",
+      "html": "<a class=\"ds-btn\" href=\"#\"><span>Read colour PDF</span> <span class=\"ds-btn-size\">19.2 MB</span></a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 22px;background:var(--ink,#1A1A1A);color:var(--paper,#F7F4EC);border:1px solid var(--ink,#1A1A1A);border-radius:0;font-family:var(--cond,'IBM Plex Sans Condensed','Arial Narrow',sans-serif);font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .15s,border-color .15s,color .15s}.ds-btn:hover{background:var(--red,#C1121F);border-color:var(--red,#C1121F);color:var(--paper,#F7F4EC)}.ds-btn:focus-visible{outline:2px solid var(--red,#C1121F);outline-offset:3px}.ds-btn-size{min-width:4.6em;text-align:right;font-weight:500;letter-spacing:.04em;font-variant-numeric:tabular-nums;opacity:.75}"
+    },
+    {
+      "name": "Ghost PDF Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Square ink outline beside the primary; hovers to red text and border while staying transparent.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\"><span>Grayscale PDF</span> <span class=\"ds-btn-ghost-size\">10.0 MB</span></a>",
+      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 22px;background:transparent;color:var(--ink,#1A1A1A);border:1px solid var(--ink,#1A1A1A);border-radius:0;font-family:var(--cond,'IBM Plex Sans Condensed','Arial Narrow',sans-serif);font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .15s,border-color .15s,color .15s}.ds-btn-ghost:hover{background:transparent;color:var(--red,#C1121F);border-color:var(--red,#C1121F)}.ds-btn-ghost:focus-visible{outline:2px solid var(--red,#C1121F);outline-offset:3px}.ds-btn-ghost-size{min-width:4.6em;text-align:right;font-weight:500;letter-spacing:.04em;font-variant-numeric:tabular-nums;opacity:.75}"
+    },
+    {
+      "name": "Text Link",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "Condensed standalone link underlined in Stone Line; turns red with a full-colour underline on hover.",
+      "html": "<p class=\"ds-links\"><a class=\"ds-textlink\" href=\"#\">Read online</a><a class=\"ds-textlink\" href=\"#\">Contents</a></p>",
+      "css": ".ds-links{display:flex;flex-wrap:wrap;gap:0 28px;margin:0}.ds-textlink{display:inline-flex;align-items:center;min-height:44px;font-family:var(--cond,'IBM Plex Sans Condensed','Arial Narrow',sans-serif);font-weight:600;font-size:16px;letter-spacing:.01em;color:var(--ink,#1A1A1A);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em;text-decoration-color:var(--line,#B9B5AC);transition:color .15s,text-decoration-color .15s}.ds-textlink:hover{color:var(--red,#C1121F);text-decoration-color:currentColor}.ds-textlink:focus-visible{outline:2px solid var(--red,#C1121F);outline-offset:3px}"
+    },
+    {
+      "name": "Masthead and Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Nameplate with italic tagline, uppercase condensed nav with a red underline for the current page, then the double ink rule. Shown at the 40px narrow nameplate size.",
+      "html": "<header class=\"ds-mast\"><div class=\"ds-mast-row\"><div class=\"ds-brand\"><span class=\"ds-brand-t\">The Ribbon</span><span class=\"ds-brand-s\">What caught my eye on X this week</span></div><nav class=\"ds-nav\" aria-label=\"Main\"><a href=\"#\" aria-current=\"page\">Latest</a><a href=\"#\">Library</a></nav></div><div class=\"ds-mast-rule\"></div></header>",
+      "css": ".ds-mast{background:var(--paper,#F7F4EC);color:var(--ink,#1A1A1A);padding:24px 24px 0}.ds-mast-row{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-bottom:18px;border-bottom:2px solid var(--ink,#1A1A1A)}.ds-brand{display:flex;flex-direction:column;gap:6px}.ds-brand-t{font-family:var(--serif,'Newsreader',Georgia,'Times New Roman',serif);font-weight:800;font-size:40px;line-height:.92;letter-spacing:-.025em}.ds-brand-s{font-family:var(--serif,'Newsreader',Georgia,'Times New Roman',serif);font-style:italic;font-size:17px;color:var(--ink2,#3A3835)}.ds-nav{display:flex;gap:28px;font-family:var(--cond,'IBM Plex Sans Condensed','Arial Narrow',sans-serif);font-weight:600;font-size:13px;letter-spacing:.13em;text-transform:uppercase}.ds-nav a{color:var(--ink,#1A1A1A);text-decoration:none;padding:12px 0;border-bottom:2px solid transparent;transition:border-color .15s,color .15s}.ds-nav a:hover,.ds-nav a[aria-current]{border-bottom-color:var(--red,#C1121F);color:var(--ink,#1A1A1A)}.ds-nav a:focus-visible{outline:2px solid var(--red,#C1121F);outline-offset:3px}.ds-mast-rule{height:3px;border-bottom:1px solid var(--ink,#1A1A1A)}"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Square condensed chip with a Stone Line border; pressed fills ink. Library year and section filters.",
+      "html": "<div class=\"ds-chips\"><button type=\"button\" class=\"ds-chip\" aria-pressed=\"true\">All years</button><button type=\"button\" class=\"ds-chip\" aria-pressed=\"false\">2026</button><button type=\"button\" class=\"ds-chip\" aria-pressed=\"false\">Markets</button></div>",
+      "css": ".ds-chips{display:flex;gap:8px;flex-wrap:wrap}.ds-chip{min-height:36px;padding:0 12px;border:1px solid var(--line,#B9B5AC);border-radius:0;background:transparent;color:var(--ink,#1A1A1A);cursor:pointer;font-family:var(--cond,'IBM Plex Sans Condensed','Arial Narrow',sans-serif);font-weight:500;font-size:14px;letter-spacing:.02em;transition:background .15s,border-color .15s,color .15s}.ds-chip:hover{border-color:var(--ink,#1A1A1A)}.ds-chip[aria-pressed=true]{background:var(--ink,#1A1A1A);border-color:var(--ink,#1A1A1A);color:var(--paper,#F7F4EC)}.ds-chip:focus-visible{outline:2px solid var(--red,#C1121F);outline-offset:3px}"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "input-search",
+      "description": "Underline-only serif field with an SVG magnifier; the library's search.",
+      "html": "<div class=\"ds-search\"><label class=\"ds-search-l\" for=\"ds-q\">Search</label><input id=\"ds-q\" class=\"ds-search-i\" type=\"search\" placeholder=\"Headline, story, @handle\" autocomplete=\"off\"><svg aria-hidden=\"true\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"M16 16l4.5 4.5\"/></svg></div>",
+      "css": ".ds-search{position:relative;display:flex;flex-direction:column;gap:8px;max-width:300px;color:var(--ink,#1A1A1A)}.ds-search-l{font-family:var(--cond,'IBM Plex Sans Condensed','Arial Narrow',sans-serif);font-weight:600;font-size:11px;letter-spacing:.13em;text-transform:uppercase}.ds-search-i{width:100%;min-height:44px;border:0;border-bottom:1px solid var(--ink,#1A1A1A);border-radius:0;background:transparent;padding:8px 28px 8px 0;font-family:var(--serif,'Newsreader',Georgia,'Times New Roman',serif);font-size:19px;color:var(--ink,#1A1A1A);-webkit-appearance:none;appearance:none}.ds-search-i:focus-visible{outline:2px solid var(--red,#C1121F);outline-offset:4px}.ds-search svg{position:absolute;right:2px;bottom:13px;pointer-events:none}"
+    },
+    {
+      "name": "Dateline Band",
+      "kind": "custom",
+      "refersTo": "dateline",
+      "description": "Every fact about the lead in one band: ink rule above, hairline below, tabular condensed figures, middle-dot separators.",
+      "html": "<p class=\"ds-dateline\"><span>No. 3</span><span><time datetime=\"2026-10-24\">24 October 2026</time></span><span>16 pages</span></p>",
+      "css": ".ds-dateline{display:flex;flex-wrap:wrap;margin:0;padding:11px 0;border-top:1px solid var(--ink,#1A1A1A);border-bottom:1px solid var(--rule,#D8D5CE);font-family:var(--cond,'IBM Plex Sans Condensed','Arial Narrow',sans-serif);font-weight:500;font-size:15px;line-height:1.4;color:var(--ink2,#3A3835);font-variant-numeric:tabular-nums lining-nums}.ds-dateline>span+span::before{content:'·';margin:0 .55em;color:var(--mute,#5F5C57)}"
+    },
+    {
+      "name": "Archive List",
+      "kind": "custom",
+      "refersTo": "archive-entry",
+      "description": "Earlier issues on the two-column register grid, opened by the page's one 3px ink rule; meta left, title right, hairlines between rows.",
+      "html": "<section class=\"ds-archive\"><div class=\"ds-archive-head\"><h2>Earlier issues</h2><a class=\"ds-archive-all\" href=\"#\">All issues in the library</a></div><ol class=\"ds-index\"><li><a class=\"ds-entry\" href=\"#\"><span class=\"ds-entry-title\">An earlier issue title</span><span class=\"ds-entry-meta\"><span>No. 2</span><span>17 October 2026</span></span></a></li><li><a class=\"ds-entry\" href=\"#\"><span class=\"ds-entry-title\">The first issue title</span><span class=\"ds-entry-meta\"><span>No. 1</span><span>10 October 2026</span></span></a></li></ol></section>",
+      "css": ".ds-archive{--cols:minmax(0,38%) minmax(0,1fr);--gutter:40px;display:grid;grid-template-columns:var(--cols);column-gap:var(--gutter);padding-top:16px;border-top:3px solid var(--ink,#1A1A1A);color:var(--ink,#1A1A1A)}.ds-archive-head{grid-column:1/-1;display:grid;grid-template-columns:subgrid;align-items:baseline}.ds-archive h2{margin:0;font-family:var(--serif,'Newsreader',Georgia,'Times New Roman',serif);font-weight:700;font-size:30px;line-height:1.15;letter-spacing:-.01em}.ds-archive-all{grid-column:2;justify-self:end;font-family:var(--cond,'IBM Plex Sans Condensed','Arial Narrow',sans-serif);font-weight:600;font-size:16px;letter-spacing:.01em;color:var(--ink,#1A1A1A);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em;text-decoration-color:var(--line,#B9B5AC);transition:color .15s,text-decoration-color .15s}.ds-archive-all:hover{color:var(--red,#C1121F);text-decoration-color:currentColor}.ds-index{grid-column:1/-1;list-style:none;margin:12px 0 0;padding:0;border-top:1px solid var(--rule,#D8D5CE)}.ds-entry{display:grid;grid-template-columns:var(--cols);column-gap:var(--gutter);align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule,#D8D5CE);text-decoration:none;color:var(--ink,#1A1A1A)}.ds-entry:focus-visible,.ds-archive-all:focus-visible{outline:2px solid var(--red,#C1121F);outline-offset:3px}.ds-entry-title{grid-column:2;grid-row:1;font-family:var(--serif,'Newsreader',Georgia,'Times New Roman',serif);font-weight:600;font-size:22px;line-height:1.25;letter-spacing:-.005em;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em;text-decoration-color:transparent;transition:color .15s,text-decoration-color .15s}.ds-entry:hover .ds-entry-title{color:var(--red,#C1121F);text-decoration-color:currentColor}.ds-entry-meta{grid-column:1;grid-row:1;font-family:var(--cond,'IBM Plex Sans Condensed','Arial Narrow',sans-serif);font-weight:500;font-size:15px;color:var(--ink2,#3A3835);font-variant-numeric:tabular-nums lining-nums}.ds-entry-meta>span+span::before{content:'·';margin:0 .55em;color:var(--mute,#5F5C57)}"
+    },
+    {
+      "name": "Source Credit Chip",
+      "kind": "chip",
+      "refersTo": "source-chip",
+      "description": "Credits a story to its post: condensed uppercase author on Proof Sheet, @handle in Plex Mono as real data; red on hover and focus.",
+      "html": "<span class=\"ds-src\"><a href=\"#\">Author Name <span class=\"ds-src-h\">@handle</span></a></span>",
+      "css": ".ds-src{display:inline-block}.ds-src>a{display:inline-flex;align-items:center;gap:8px;min-height:28px;padding:0 8px;border:1px solid var(--line,#B9B5AC);border-radius:0;background:var(--card,#FBF9F4);color:var(--ink,#1A1A1A);text-decoration:none;font-family:var(--cond,'IBM Plex Sans Condensed','Arial Narrow',sans-serif);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}.ds-src>a:hover,.ds-src>a:focus-visible{border-color:var(--red,#C1121F);color:var(--red,#C1121F)}.ds-src>a:focus-visible{outline:2px solid var(--red,#C1121F);outline-offset:3px}.ds-src-h{font-family:var(--mono,'IBM Plex Mono',ui-monospace,Menlo,monospace);text-transform:none;letter-spacing:0;font-weight:400;font-size:11.5px;color:var(--mute,#5F5C57)}.ds-src>a:hover .ds-src-h,.ds-src>a:focus-visible .ds-src-h{color:inherit}"
+    },
+    {
+      "name": "Lead Cover",
+      "kind": "card",
+      "refersTo": "",
+      "description": "The issue cover at the printed proportion with the soft paper lift; rises 6px on hover. The only shadowed object on the front page.",
+      "html": "<a class=\"ds-cover\" href=\"#\" aria-label=\"Cover of Issue 3\"><div class=\"ds-cover-img\"></div></a>",
+      "css": ".ds-cover{display:block;width:180px}.ds-cover-img{width:100%;aspect-ratio:1800/2548;background:#E7E2D5;border-radius:0;box-shadow:0 1px 0 rgba(26,26,26,.08),0 18px 30px -20px rgba(26,26,26,.55);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s cubic-bezier(.16,1,.3,1)}.ds-cover:hover .ds-cover-img{transform:translateY(-6px);box-shadow:0 1px 0 rgba(26,26,26,.08),0 26px 36px -22px rgba(26,26,26,.5)}.ds-cover:focus-visible{outline:2px solid var(--red,#C1121F);outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Saturday Register",
+    "overview": "The site is the printed magazine's own register: a front page where the newest issue leads, a library that lists the rest, and a reader that turns the pages. It is set like a publication, not assembled like an app. Book paper ground, one ink, one red. Structure comes from ruled lines of graded weight and from one strict two-column grid, never from boxes, tints or shadows. The covers are the only pictures and the only objects that lift off the page.\n\nTwo typefaces do the talking. Newsreader carries the nameplate, every title, the italic cover lines and the reading text. IBM Plex Sans Condensed runs the machinery: navigation, buttons, datelines, links and every fact in a row, always with tabular figures. IBM Plex Mono is held back for literal machine strings such as file names and @handles. Density is calm: large type, generous section gaps, short lists, nothing competing with the cover.\n\nThe front page (redesigned October 2026) is the system's newest and cleanest expression: the lead on the two-column register grid, one dateline band, square ink buttons that carry their file sizes, underlined text links, and a ruled list of earlier issues opened by the page's single heavy rule. The library, issue and reader pages share the tokens and components but still carry older devices (label kickers above headings, a red tab section marker, monospace metadata) that this document does not adopt. New surfaces follow the front page.",
+    "keyCharacteristics": [
+      "Book paper ground, press ink, and one red that marks state and place.",
+      "Rules of graded weight do the work that boxes and cards do elsewhere.",
+      "One two-column grid holds the lead and every list row, so titles align down the page.",
+      "Newsreader speaks; Plex Sans Condensed operates, with tabular lining figures for every fact.",
+      "Square corners everywhere; a soft paper lift only under covers and page images.",
+      "Self-hosted faces only; nothing loads from a third-party host."
+    ],
+    "rules": [
+      { "name": "The One Red Rule", "body": "Red means \"here\" or \"now\": current location, hover, focus, selection, progress. Headings, rules and body text never take it at rest, and it fills an area only as a button's hover state.", "section": "colors" },
+      { "name": "The Paper Ground Rule", "body": "Pages sit on Book Paper with no section tints or banded backgrounds. Proof Sheet is the only raised paper, and only for the download box and source cards.", "section": "colors" },
+      { "name": "The Two Voices Rule", "body": "Newsreader speaks (nameplate, titles, decks, reading); Plex Sans Condensed operates (nav, buttons, datelines, links, meta). A third voice appears only as data.", "section": "typography" },
+      { "name": "The Tabular Facts Rule", "body": "Every number that sits in a row or a button (issue numbers, dates, page counts, file sizes, issue totals) is Plex Sans Condensed with tabular lining figures, so columns of facts line up.", "section": "typography" },
+      { "name": "The Real Data Mono Rule", "body": "IBM Plex Mono is legitimate only for literal machine strings: a file name, an @handle, a SHA or build hash. Dates, counts, page numbers, breadcrumbs, captions, status strips and labels are never monospace; the front page uses none.", "section": "typography" },
+      { "name": "The One Grid Rule", "body": "The lead and every list row share the same two columns, so cover, metadata and titles align down the whole page. A new section joins that grid rather than inventing its own.", "section": "layout" },
+      { "name": "The Rule Weights Rule", "body": "Rules carry structure, graded by weight: a Hairline Grey 1px between rows, 1px ink to open a section or top a dateline band, 2px ink under the masthead (followed by a 3px gap and a 1px ink line, a double rule) and over the footer, and one 3px ink rule per page to open the archive list.", "section": "layout" },
+      { "name": "The Paper Lift Rule", "body": "Only printed objects and floating cards cast a shadow, always soft and offset downward. A shadow never stands in for a border, a section or a button state.", "section": "elevation" },
+      { "name": "The Square Corner Rule", "body": "No radius anywhere (0px). Softness comes from the paper, not the corners.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do set every page on Book Paper (#F7F4EC) in Press Ink (#1A1A1A), and let Cover Red (#C1121F) mark only state and place: hover, focus, the current nav item, selection.",
+      "Do separate with rules by weight: a Hairline Grey 1px between rows, 1px ink to open a section, 2px ink under the masthead and over the footer, and one 3px ink rule per page for the archive list.",
+      "Do put the lead and every list row on the one two-column grid (min(24rem, 38%) and 1fr, gutter clamp(40px, 5vw, 72px)), collapsing to one column at 720px.",
+      "Do set every row fact (issue number, date, page count, file size) in Plex Sans Condensed with tabular lining figures, joined by a Pencil Grey middle dot.",
+      "Do carry a file's size inside the button that downloads it, in a right-aligned slot reserved at 4.6em.",
+      "Do keep every target at least 44px (50px for the lead's PDF buttons) and keep the 2px red focus outline at a 3px offset.",
+      "Do use IBM Plex Mono only for literal machine strings: a PDF file name, an @handle, a SHA or build hash.",
+      "Do draw icons as inline SVG line icons on a 24px grid, stroked in currentColor at 1.6–1.7, with no fill."
+    ],
+    "donts": [
+      "Don't put a small uppercase label above a heading. The older pages' red \"LIBRARY\", \"ISSUE NO. 2 · COVER STORY\" and \"THIS WEEK\" labels, and the blue section labels above contents headlines, are defects; the heading carries itself.",
+      "Don't mark sections with the red 32×8px tab on a red hairline; open a section with a 1px ink rule.",
+      "Don't set dates, counts, page numbers, breadcrumbs, captions or status strips in monospace to look technical.",
+      "Don't round anything: buttons, chips, fields, boxes and covers are square (0px).",
+      "Don't put a shadow on buttons, rules, text or boxes; the soft paper lift belongs to covers, page images and floating cards.",
+      "Don't use Index Blue (#2F5D8A) as a second accent for links, buttons or headings; it is annotation only.",
+      "Don't use Unicode arrows or other glyphs as icons, as the library's \"Read →\" and the issue page's monospace ←/→ still do.",
+      "Don't add colour literals outside the ten tokens for text or rules, as the older print box (#2B2B2B) and reader placeholder (#8a867d) still do."
+    ]
+  }
+}

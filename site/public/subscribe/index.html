@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Get it on Kindle — The Ribbon</title>
+<meta name="description" content="Get The Ribbon free on your Kindle every Saturday. Four short steps.">
+<meta name="theme-color" content="#f0d6a3">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<!-- Share cards. Absolute URLs by spec, on the one site origin (docs/DOMAIN.md). -->
+<link rel="canonical" href="https://theribbon.fyi/subscribe/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Ribbon">
+<meta property="og:title" content="Get it on Kindle — The Ribbon">
+<meta property="og:description" content="Get The Ribbon free on your Kindle every Saturday. Four short steps.">
+<meta property="og:url" content="https://theribbon.fyi/subscribe/">
+<meta property="og:image" content="https://theribbon.fyi/og/default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Ribbon. Stay current on tech. Skip the scroll. Free on your Kindle every Saturday.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="/fonts/instrument-serif-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/schibsted-grotesk-normal-400_700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/front.css">
+<script src="/js/ab.js"></script>
+<script defer src="/js/pa.js" data-domain="theribbon.fyi"></script>
+<link rel="modulepreload" href="/js/data.js">
+<script type="module" src="/js/subscribe.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar">
+  <a class="wordmark" href="/">
+    <svg class="wordmark__mark" viewBox="0 0 11 16" aria-hidden="true"><path d="M0 0h11v16l-5.5-4.2L0 16z"/></svg>
+    The Ribbon
+  </a>
+  <nav aria-label="Site">
+    <a class="bar__link" href="/library/">Library</a>
+  </nav>
+</header>
+
+<main id="main" class="flow">
+  <div class="flow__top">
+    <a class="back" href="/" data-back>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4"/></svg>
+      <span data-back-label>Front page</span>
+    </a>
+    <p aria-live="polite" data-count>Step 1 of 4</p>
+  </div>
+  <ol class="progress" aria-hidden="true">
+    <li class="is-current"></li><li></li><li></li><li></li>
+  </ol>
+
+  <!-- Shown only when js/subscribe.js DELIVERY is 'off' (the kill switch). -->
+  <p class="flow__notice" data-notice hidden>Kindle delivery opens soon. You can walk through the setup now; nothing is sent or saved yet.</p>
+
+  <noscript><p class="flow__notice">This setup needs JavaScript. Every issue is free to read in the <a href="/library/">library</a>.</p></noscript>
+
+  <form novalidate data-flow>
+    <section class="step" data-step="1" aria-labelledby="s1">
+      <h1 id="s1" tabindex="-1">Your email</h1>
+      <p><strong>It’s free.</strong> Your email lets you change or stop delivery later.</p>
+      <div class="field">
+        <label for="email">Email</label>
+        <div class="input">
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="you@example.com" aria-describedby="email-error">
+        </div>
+        <p class="error" id="email-error" hidden>That doesn’t look like an email address. Check for a typo.</p>
+      </div>
+      <button class="pill" type="submit">Continue</button>
+    </section>
+
+    <section class="step" data-step="2" aria-labelledby="s2" hidden>
+      <h1 id="s2" tabindex="-1">Your Kindle’s address</h1>
+      <p>On Amazon, under Content &amp; Devices › Preferences › Personal Document Settings.</p>
+      <div class="field">
+        <label for="kindle">Send-to-Kindle email</label>
+        <div class="input">
+          <input id="kindle" name="kindle" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="yourname_1234" aria-describedby="kindle-error">
+          <span class="input__suffix" aria-hidden="true">@kindle.com</span>
+        </div>
+        <p class="error" id="kindle-error" hidden>Use just the part before @kindle.com: letters, numbers, dots, dashes or underscores.</p>
+      </div>
+      <button class="pill" type="submit">Continue</button>
+    </section>
+
+    <section class="step" data-step="3" aria-labelledby="s3" hidden>
+      <h1 id="s3" tabindex="-1">Approve our sender</h1>
+      <p>Amazon only delivers from addresses you approve. Add this one in the same settings.</p>
+      <div class="sender">
+        <code data-sender></code>
+        <button class="chip" type="button" data-copy>Copy</button>
+      </div>
+      <a class="outlink" href="https://www.amazon.com/myk" target="_blank" rel="noopener">
+        Open Amazon settings
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12"/></svg>
+        <span class="visually-hidden">(opens in a new tab)</span>
+      </a>
+      <button class="pill" type="submit">I’ve added it</button>
+    </section>
+
+    <section class="step" data-step="4" aria-labelledby="s4" hidden>
+      <h1 id="s4" tabindex="-1">Send a test</h1>
+      <p data-send-text>We’ll send <span data-issue-name>the latest issue</span> to <strong data-kindle-full>your Kindle</strong> now. It usually arrives within a few minutes.</p>
+      <button class="pill" type="submit" data-send>Send test issue</button>
+      <p class="error" id="send-error" role="alert" hidden></p>
+    </section>
+
+    <section class="step" data-step="5" aria-labelledby="s5" hidden>
+      <svg class="done-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="20" r="18.5"/><path d="m12.5 20.5 5 5 10-11"/></svg>
+      <h1 id="s5" tabindex="-1" data-done-title>Sent. Check your Kindle.</h1>
+      <p data-done-text>Then you’re set. The next issue arrives on Saturday.</p>
+      <a class="outlink" href="/" data-home-link>Back to the front page</a>
+    </section>
+  </form>
+
+  <!-- Where the email links land (/api/confirm and /api/stop redirect here): ?confirmed, ?stopped or ?expired. -->
+  <section class="step" data-outcome aria-labelledby="outcome-title" hidden>
+    <svg class="done-mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="20" r="18.5"/><path d="m12.5 20.5 5 5 10-11"/></svg>
+    <h1 id="outcome-title" tabindex="-1"></h1>
+    <p data-outcome-text></p>
+    <a class="pill" href="/subscribe/" data-outcome-action></a>
+  </section>
+</main>
+</body>
+</html>

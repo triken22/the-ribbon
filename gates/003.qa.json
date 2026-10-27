@@ -1,0 +1,22 @@
+{
+  "issue": 3,
+  "qa_verdict": "pass",
+  "reviewed_at": "2026-10-23T16:45:00Z",
+  "reviewer": "Grok Bot: v4 box QA (2026-10-23T07:48Z) + v5 X-link verification (work/verify.json)",
+  "repo_commit": "60ad9804885c4a22575e05ac2f675c2b1b514933",
+  "pdf_sha256": {
+    "pdf_color": "5cca3cd27f41d7fe807d61968daab9afe97fdd875240ca91f34642b7fe517a3d",
+    "pdf_grayscale": "eef7cca980aa1b5c7cb08fbdb187d94fe0ba72e5d8b51e4b814ae4fbf355d237"
+  },
+  "meta_sha256": "2d0bf7c8f4929c348ada7ba07019a61cfed1a18e1a3638cdf191eaecec03809b",
+  "findings": [
+    "F1 open: bkmk.to short links (49) and bkmk.to/subscribe QR are dead (NXDOMAIN); pre-existing in live v1; Tristan to decide",
+    "F2 info: grayscale is Ghostscript conversion of the colour PDF, not native engine render",
+    "F3 fixed: ft/fj ligature ToUnicode entries restored in grayscale text layer",
+    "F4 info: strip removes all link annotations (contents links were already dead in source)",
+    "F5 info: box poppler 25.03 vs Mini 26.10; rehearsal image names will differ",
+    "F6 blocker by design: approval key not pinned yet",
+    "v5-links: v4 bytes preserved as prefix; 91 X-status links per edition, 45 distinct URLs, 0 bad URLs, 0 pages with pixel diff vs v4",
+    "Pre-publish strip with site/keep-x-links strip_metadata (links rebuilt to minimal form, metadata removed); strip is idempotent on the result."
+  ]
+}

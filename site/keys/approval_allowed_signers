@@ -1,0 +1,7 @@
+# Pinned public key(s) allowed to sign The Ribbon issue approvals (ssh-keygen -Y, see site/docs/PUBLISH.md section 1a).
+# Format (one line per key; principal MUST be "owner", namespace MUST be "weekend-bookmark-approval"):
+#   owner namespaces="weekend-bookmark-approval" ssh-ed25519 AAAA...<the owner's PUBLIC key>... weekend-bookmark-approval
+#
+# PLACEHOLDER: no key is pinned yet. Until the repo owner pins their PUBLIC key here in a reviewed PR,
+# `bookmark publish` refuses every issue ("no pinned approval key"). Never put a private key in this repo,
+# and no agent generates or holds the approval key.

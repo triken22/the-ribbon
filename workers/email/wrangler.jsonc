@@ -1,0 +1,38 @@
+// Email Worker for The Ribbon: double opt-in, Kindle delivery, stop links. Read docs/EMAIL.md before changing or deploying.
+// Domain: theribbon.fyi (docs/DOMAIN.md).
+// No secrets in this file: RESEND_API_KEY (fallback transport) is set with `wrangler secret put RESEND_API_KEY` (.env.example).
+// No account_id either: wrangler takes the account from `wrangler login` or CLOUDFLARE_ACCOUNT_ID in your shell.
+// Forking? Replace the domain, sender, bucket and D1 database_id below with your own; the IDs here are not credentials.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "weekend-bookmark-email",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+
+  // Same-origin with the site, so the CSP's connect-src 'self' covers the subscribe form's fetch.
+  // A Worker route on the zone wins over Pages for /api/*; everything else stays on Pages.
+  "routes": [{ "pattern": "theribbon.fyi/api/*", "zone_name": "theribbon.fyi" }],
+  "workers_dev": false,
+
+  "vars": {
+    "SITE": "https://theribbon.fyi",
+    "FROM_ISSUES": "issue@theribbon.fyi",    // permanent: the address readers add to Amazon's approved senders list
+    "FROM_NAME": "The Ribbon",
+    "CF_MAX_ATTACHMENT_BYTES": "3600000"     // 5 MiB message cap, base64 inflates 4/3, minus headroom for headers and body
+  },
+
+  // Cloudflare Email Sending (beta, Workers Paid). Only these senders may be used by this binding.
+  "send_email": [{ "name": "EMAIL", "allowed_sender_addresses": ["issue@theribbon.fyi"] }],
+
+  // The same private bucket the site reads (read-only use here: get/head of manifest.json and issue PDFs).
+  "r2_buckets": [{ "binding": "ISSUES", "bucket_name": "weekend-bookmark-issues" }],
+
+  // Subscribers. Create with: wrangler d1 create weekend-bookmark-subscribers ; then paste the id below. No subscriber data lives in git.
+  "d1_databases": [{ "binding": "DB", "database_name": "weekend-bookmark-subscribers", "database_id": "d514d8be-4243-4b5c-8b9b-b62ea461582b", "migrations_dir": "migrations" }],
+
+  // Abuse guard on /api/subscribe (per IP). Workers Rate Limiting binding.
+  "ratelimits": [{ "name": "SUBSCRIBE_LIMIT", "namespace_id": "1001", "simple": { "limit": 5, "period": 60 } }],
+
+  // Saturday 07:00 UTC: send the latest issue to every confirmed reader.
+  "triggers": { "crons": ["0 7 * * SAT"] }
+}

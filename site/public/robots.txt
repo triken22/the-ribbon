@@ -1,0 +1,6 @@
+# Everything public is meant to be read. Preview deployments carry X-Robots-Tag: noindex from Pages itself.
+# The Sitemap URL is absolute by spec, on the one site origin (docs/DOMAIN.md).
+User-agent: *
+Allow: /
+
+Sitemap: https://theribbon.fyi/sitemap.xml

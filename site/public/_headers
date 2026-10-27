@@ -1,0 +1,57 @@
+# Cloudflare Pages headers. https://developers.cloudflare.com/pages/configuration/headers/
+# Security headers for every response.
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'none'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+
+# NOTE: Pages merges every matching rule, so Cache-Control is set per path only (never under /*).
+
+# HTML routes: short.
+/
+  Cache-Control: public, max-age=300, must-revalidate
+/library/
+  Cache-Control: public, max-age=300, must-revalidate
+/issue/
+  Cache-Control: public, max-age=300, must-revalidate
+/read/
+  Cache-Control: public, max-age=300, must-revalidate
+/subscribe/
+  Cache-Control: public, max-age=300, must-revalidate
+
+# Issue index: short cache so a freshly published issue shows up within a minute.
+/manifest.json
+  Cache-Control: public, max-age=60, must-revalidate
+
+# NOTE: /issues/* and /manifest.json are served by the Pages Function (functions/_lib/serve.js), which sets its own headers (kept equal by
+# scripts/test_functions.mjs). The rules below only apply if a file ever exists as a static asset.
+# Per-issue metadata and files: written once at publish time, never edited in place.
+/issues/*/meta.json
+  Cache-Control: public, max-age=60
+/issues/*/pages/*
+  Cache-Control: public, max-age=31536000, immutable
+/issues/*.pdf
+  Cache-Control: public, max-age=31536000, immutable
+
+# Static assets.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+/css/*
+  Cache-Control: public, max-age=3600, must-revalidate
+/js/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# Icons and share images: stable names, not content-hashed, so a day (a week for icons) rather than immutable.
+# Crawlers (X, Slack, iMessage) cache og images on their side anyway; re-render under a new name to force a refresh.
+/favicon.svg
+  Cache-Control: public, max-age=604800
+/apple-touch-icon.png
+  Cache-Control: public, max-age=604800
+/og/*
+  Cache-Control: public, max-age=86400
+/robots.txt
+  Cache-Control: public, max-age=86400
+# /sitemap.xml is served by functions/sitemap.xml.js (1 hour), which sets its own headers.

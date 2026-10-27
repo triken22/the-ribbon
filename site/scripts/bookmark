@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Thin wrapper: `bookmark publish NNN [flags]`. See docs/PUBLISH.md.
+exec python3 "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/bookmark_publish.py" "$@"

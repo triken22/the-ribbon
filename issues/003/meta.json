@@ -1,0 +1,299 @@
+{
+  "issue": 3,
+  "title": "The Weekend Bookmark — Issue 3",
+  "date": "2026-10-24",
+  "pages": 16,
+  "cover_headline": "The rocket firm’s server farm",
+  "cover_image": "pages/p-01.webp",
+  "qa_verdict": "pass",
+  "sections": [
+    {
+      "slug": "leaders",
+      "label": "Leaders",
+      "page_start": 3,
+      "page_end": 3
+    },
+    {
+      "slug": "the-lead",
+      "label": "The Lead",
+      "page_start": 4,
+      "page_end": 4
+    },
+    {
+      "slug": "ai-tools",
+      "label": "AI & Tools",
+      "page_start": 5,
+      "page_end": 5
+    },
+    {
+      "slug": "tech-business",
+      "label": "Tech & Business",
+      "page_start": 6,
+      "page_end": 7
+    },
+    {
+      "slug": "markets",
+      "label": "Markets",
+      "page_start": 8,
+      "page_end": 8
+    },
+    {
+      "slug": "politics-society",
+      "label": "Politics & Society",
+      "page_start": 9,
+      "page_end": 9
+    },
+    {
+      "slug": "ideas-culture",
+      "label": "Ideas & Culture",
+      "page_start": 10,
+      "page_end": 11
+    },
+    {
+      "slug": "ai-tools",
+      "label": "AI & Tools",
+      "page_start": 12,
+      "page_end": 12
+    },
+    {
+      "slug": "faith",
+      "label": "Faith",
+      "page_start": 13,
+      "page_end": 14
+    },
+    {
+      "slug": "worth-your-time",
+      "label": "Worth Your Time",
+      "page_start": 15,
+      "page_end": 15
+    },
+    {
+      "slug": "last-word",
+      "label": "The Last Word",
+      "page_start": 16,
+      "page_end": 16
+    }
+  ],
+  "articles": [
+    {
+      "id": "a01",
+      "headline": "Write the memo yourself",
+      "section": "leaders",
+      "page": 3,
+      "kind": "feature",
+      "sources": []
+    },
+    {
+      "id": "a02",
+      "headline": "Find the task that matters",
+      "section": "leaders",
+      "page": 3,
+      "kind": "feature",
+      "sources": []
+    },
+    {
+      "id": "a03",
+      "headline": "A parts list is not a verdict",
+      "section": "leaders",
+      "page": 3,
+      "kind": "feature",
+      "sources": []
+    },
+    {
+      "id": "a04",
+      "headline": "SpaceX’s Super Intelligence arm now outsells its space business",
+      "section": "the-lead",
+      "page": 4,
+      "kind": "cover",
+      "sources": [
+        {
+          "post_id": "2112636781967409357",
+          "url": "https://x.com/SawyerMerritt/status/2112636781967409357",
+          "author_handle": "SawyerMerritt",
+          "author_name": "Sawyer Merritt",
+          "snippet": "SpaceX has just released its Q3 earnings results. Highlights: Revenue: $14.58B (+161% YoY; vs. $12.7B est). Adjusted EBITDA: $8.81B (+306% YoY). Capex: $19.59B (+185% YoY)."
+        }
+      ]
+    },
+    {
+      "id": "a05",
+      "headline": "Anthropic outgrew git, so it built Scion",
+      "section": "ai-tools",
+      "page": 5,
+      "kind": "feature",
+      "sources": []
+    },
+    {
+      "id": "a06",
+      "headline": "A 1M-parameter OCR model claims to outrun Tesseract",
+      "section": "ai-tools",
+      "page": 5,
+      "kind": "brief",
+      "sources": []
+    },
+    {
+      "id": "a07",
+      "headline": "A television loses its adverts and gains a dashboard",
+      "section": "ai-tools",
+      "page": 5,
+      "kind": "feature",
+      "sources": []
+    },
+    {
+      "id": "a08",
+      "headline": "A near-record index with 206 battered stocks",
+      "section": "tech-business",
+      "page": 6,
+      "kind": "feature",
+      "sources": []
+    },
+    {
+      "id": "a09",
+      "headline": "America’s interest bill now tops $1 trillion",
+      "section": "tech-business",
+      "page": 6,
+      "kind": "feature",
+      "sources": []
+    },
+    {
+      "id": "a10",
+      "headline": "A poisoned LiteLLM release went hunting for AI keys",
+      "section": "tech-business",
+      "page": 7,
+      "kind": "feature",
+      "sources": []
+    },
+    {
+      "id": "a11",
+      "headline": "A perfect-ten GitLab flaw reaches back 12 years",
+      "section": "tech-business",
+      "page": 7,
+      "kind": "feature",
+      "sources": []
+    },
+    {
+      "id": "a12",
+      "headline": "The week in the watchlist",
+      "section": "markets",
+      "page": 8,
+      "kind": "department",
+      "sources": []
+    },
+    {
+      "id": "a13",
+      "headline": "Vom Tech-Plus zum Anleihe-Minus: das Menü fürs Vorsorgedepot",
+      "section": "politics-society",
+      "page": 9,
+      "kind": "feature",
+      "sources": []
+    },
+    {
+      "id": "a14",
+      "headline": "Klarna und PayPal sollen Ratenkäufer auf Bonität prüfen",
+      "section": "politics-society",
+      "page": 9,
+      "kind": "feature",
+      "sources": []
+    },
+    {
+      "id": "a15",
+      "headline": "The neural knots that may not exist",
+      "section": "ideas-culture",
+      "page": 10,
+      "kind": "feature",
+      "sources": [
+        {
+          "post_id": "2110757819427574056",
+          "url": "https://x.com/nickcammarata/status/2110757819427574056",
+          "author_handle": "nickcammarata",
+          "author_name": "Nick",
+          "snippet": "interpretability might be the most important scientific problem in the world right now, as I don't think we can solve alignment if we don't know what we're building."
+        }
+      ]
+    },
+    {
+      "id": "a16",
+      "headline": "The brain flickers between seen and unseen",
+      "section": "ideas-culture",
+      "page": 11,
+      "kind": "feature",
+      "sources": []
+    },
+    {
+      "id": "a17",
+      "headline": "Most decaf is still made with a solvent",
+      "section": "ideas-culture",
+      "page": 11,
+      "kind": "feature",
+      "sources": []
+    },
+    {
+      "id": "a18",
+      "headline": "Claude finds the clock behind a famous curve",
+      "section": "ai-tools",
+      "page": 12,
+      "kind": "feature",
+      "sources": []
+    },
+    {
+      "id": "a19",
+      "headline": "Cloudflare lends coding agents a sceptical security auditor",
+      "section": "ai-tools",
+      "page": 12,
+      "kind": "feature",
+      "sources": []
+    },
+    {
+      "id": "a20",
+      "headline": "Luke’s ravens and lilies, and the limits of worry",
+      "section": "faith",
+      "page": 13,
+      "kind": "feature",
+      "sources": []
+    },
+    {
+      "id": "a21",
+      "headline": "What a Galilean household list reveals in Luke",
+      "section": "faith",
+      "page": 14,
+      "kind": "feature",
+      "sources": []
+    },
+    {
+      "id": "a22",
+      "headline": "Two long reads",
+      "section": "worth-your-time",
+      "page": 15,
+      "kind": "list",
+      "sources": []
+    },
+    {
+      "id": "a23",
+      "headline": "The parents’ evening has no back row",
+      "section": "last-word",
+      "page": 16,
+      "kind": "column",
+      "sources": []
+    }
+  ],
+  "files": {
+    "pdf_color": "issue-003-color-v5-links.pdf",
+    "pdf_grayscale": "issue-003-gray-v5-links.pdf",
+    "pages_dir": "pages/",
+    "page_count": 16,
+    "sha256": {
+      "pdf_color": "5cca3cd27f41d7fe807d61968daab9afe97fdd875240ca91f34642b7fe517a3d",
+      "pdf_grayscale": "eef7cca980aa1b5c7cb08fbdb187d94fe0ba72e5d8b51e4b814ae4fbf355d237"
+    }
+  },
+  "image_credits": [
+    "Cover and page 3 illustrations: AI-generated vector drawings for this issue.",
+    "Page 4 photo: @SawyerMerritt on X. Page 5 photo: @doooyle on X. Page 9 screenshot: WELT, via @Techaktien1 on X. Page 15 graphic: @TheHackersNews.",
+    "Page 7: Giulio Bonasone, The Trojans Hauling the Wooden Horse into Troy (1545, published 1773). CC0 1.0, The Metropolitan Museum of Art.",
+    "Page 10: Wellcome Collection, line drawing of the retina. CC BY 4.0, via Wikimedia Commons.",
+    "Page 11: A.D.M; John Chapman, Optics, RMG F8609 (1820). Public domain, via Wikimedia Commons.",
+    "Page 12: Table of Conics, Cyclopaedia, vol. 1, p. 304 (1728). Public domain, via Wikimedia Commons.",
+    "Page 13: J. J. Audubon, Raven, plate 101, The Birds of America (1827–38), public domain, via Wikimedia Commons; Helena de Kay, Water Lilies (ca. 1870–77), CC0 1.0, The Met.",
+    "Page 14: Pieter Bruegel the Elder, The Harvesters (1565). CC0 1.0, The Metropolitan Museum of Art."
+  ]
+}

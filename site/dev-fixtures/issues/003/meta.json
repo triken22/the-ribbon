@@ -1,0 +1,48 @@
+{
+  "issue": 3,
+  "title": "The agents outgrew git",
+  "date": "2026-10-24",
+  "pages": 16,
+  "cover_headline": "Example cover headline (sample data)",
+  "cover_image": "pages/p-01.webp",
+  "qa_verdict": "pass",
+  "sections": [
+    {
+      "slug": "ai",
+      "label": "AI & Tools",
+      "page_start": 2,
+      "page_end": 16
+    }
+  ],
+  "articles": [
+    {
+      "id": "a01",
+      "headline": "Example story (sample data)",
+      "section": "ai",
+      "page": 2,
+      "kind": "feature",
+      "sources": [
+        {
+          "post_id": "1000000000000000300",
+          "url": "https://x.com/example_author/status/1000000000000000300",
+          "author_handle": "example_author",
+          "author_name": "Example Author",
+          "snippet": "Example data — not a real post. A short stand-in for the post this story was written from."
+        }
+      ]
+    }
+  ],
+  "files": {
+    "pdf_color": "issue-003-color.pdf",
+    "pdf_grayscale": "issue-003-grayscale.pdf",
+    "pages_dir": "pages/",
+    "page_count": 16,
+    "sha256": {
+      "pdf_color": "2f7b38c11bc5e7d6ff82b461ba3946f9eaa59497849ad62a69fd128fbafcc546",
+      "pdf_grayscale": "9f13bd2f7e18f764e5dccf8de148babb113705e93aa0afce8e47968fc0826f8e"
+    }
+  },
+  "image_credits": [
+    "Cover illustration: AI-generated for this issue (example credit)."
+  ]
+}

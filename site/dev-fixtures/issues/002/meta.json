@@ -1,0 +1,275 @@
+{
+  "issue": 2,
+  "title": "The night-shift model",
+  "date": "2026-10-17",
+  "pages": 16,
+  "cover_headline": "Opus 5.5 is working the night shift",
+  "cover_image": "pages/p-01.webp",
+  "qa_verdict": "pass",
+  "sections": [
+    {
+      "slug": "this-week",
+      "label": "This week",
+      "page_start": 2,
+      "page_end": 2
+    },
+    {
+      "slug": "ai",
+      "label": "AI",
+      "page_start": 3,
+      "page_end": 3
+    },
+    {
+      "slug": "ai-tools",
+      "label": "AI & Tools",
+      "page_start": 4,
+      "page_end": 5
+    },
+    {
+      "slug": "tech-business",
+      "label": "Tech & Business",
+      "page_start": 6,
+      "page_end": 7
+    },
+    {
+      "slug": "markets",
+      "label": "Markets",
+      "page_start": 8,
+      "page_end": 8
+    },
+    {
+      "slug": "politics-society",
+      "label": "Politics & Society",
+      "page_start": 9,
+      "page_end": 9
+    },
+    {
+      "slug": "ideas-culture",
+      "label": "Ideas & Culture",
+      "page_start": 10,
+      "page_end": 11
+    },
+    {
+      "slug": "archive",
+      "label": "From the Archive",
+      "page_start": 12,
+      "page_end": 12
+    },
+    {
+      "slug": "faith",
+      "label": "Faith",
+      "page_start": 13,
+      "page_end": 14
+    },
+    {
+      "slug": "worth-your-time",
+      "label": "Worth your time",
+      "page_start": 15,
+      "page_end": 15
+    },
+    {
+      "slug": "last-word",
+      "label": "The last word",
+      "page_start": 16,
+      "page_end": 16
+    }
+  ],
+  "articles": [
+    {
+      "id": "a01",
+      "headline": "The world this week",
+      "section": "this-week",
+      "page": 2,
+      "kind": "department",
+      "sources": []
+    },
+    {
+      "id": "a02",
+      "headline": "Mind the funnel",
+      "section": "ai",
+      "page": 3,
+      "kind": "feature",
+      "sources": [
+        {
+          "post_id": "1000000000000000201",
+          "url": "https://x.com/sample_writer/status/1000000000000000201",
+          "author_handle": "sample_writer",
+          "author_name": "Sample Writer",
+          "snippet": "Example data — not a real post. A short stand-in for the post this story was written from."
+        }
+      ]
+    },
+    {
+      "id": "a03",
+      "headline": "Opus 5.5 is working the night shift",
+      "section": "ai-tools",
+      "page": 4,
+      "kind": "cover",
+      "sources": [
+        {
+          "post_id": "1000000000000000202",
+          "url": "https://x.com/demo_editor/status/1000000000000000202",
+          "author_handle": "demo_editor",
+          "author_name": "Demo Editor",
+          "snippet": "Example data — not a real post. A short stand-in for the post this story was written from."
+        },
+        {
+          "post_id": "1000000000000000252",
+          "url": "https://x.com/placeholder_fan/status/1000000000000000252",
+          "author_handle": "placeholder_fan",
+          "author_name": "Placeholder Fan",
+          "snippet": "Example data — not a real post. A short stand-in for the post this story was written from."
+        }
+      ]
+    },
+    {
+      "id": "a04",
+      "headline": "The AI model that decides instead of chatting",
+      "section": "ai-tools",
+      "page": 5,
+      "kind": "feature",
+      "sources": [
+        {
+          "post_id": "1000000000000000203",
+          "url": "https://x.com/placeholder_fan/status/1000000000000000203",
+          "author_handle": "placeholder_fan",
+          "author_name": "Placeholder Fan",
+          "snippet": "Example data — not a real post. A short stand-in for the post this story was written from."
+        }
+      ]
+    },
+    {
+      "id": "a05",
+      "headline": "The agents are now cleaning up the code",
+      "section": "tech-business",
+      "page": 6,
+      "kind": "feature",
+      "sources": [
+        {
+          "post_id": "1000000000000000204",
+          "url": "https://x.com/example_author/status/1000000000000000204",
+          "author_handle": "example_author",
+          "author_name": "Example Author",
+          "snippet": "Example data — not a real post. A short stand-in for the post this story was written from."
+        }
+      ]
+    },
+    {
+      "id": "a06",
+      "headline": "Patrick Collison suspects agents will reward better",
+      "section": "tech-business",
+      "page": 7,
+      "kind": "feature",
+      "sources": [
+        {
+          "post_id": "1000000000000000205",
+          "url": "https://x.com/sample_writer/status/1000000000000000205",
+          "author_handle": "sample_writer",
+          "author_name": "Sample Writer",
+          "snippet": "Example data — not a real post. A short stand-in for the post this story was written from."
+        }
+      ]
+    },
+    {
+      "id": "a07",
+      "headline": "The week in the watchlist",
+      "section": "markets",
+      "page": 8,
+      "kind": "department",
+      "sources": []
+    },
+    {
+      "id": "a08",
+      "headline": "Critic says Germany’s digital-violence bill could…",
+      "section": "politics-society",
+      "page": 9,
+      "kind": "feature",
+      "sources": [
+        {
+          "post_id": "1000000000000000207",
+          "url": "https://x.com/placeholder_fan/status/1000000000000000207",
+          "author_handle": "placeholder_fan",
+          "author_name": "Placeholder Fan",
+          "snippet": "Example data — not a real post. A short stand-in for the post this story was written from."
+        }
+      ]
+    },
+    {
+      "id": "a09",
+      "headline": "The recycling bin as confessional",
+      "section": "ideas-culture",
+      "page": 10,
+      "kind": "feature",
+      "sources": [
+        {
+          "post_id": "1000000000000000208",
+          "url": "https://x.com/example_author/status/1000000000000000208",
+          "author_handle": "example_author",
+          "author_name": "Example Author",
+          "snippet": "Example data — not a real post. A short stand-in for the post this story was written from."
+        }
+      ]
+    },
+    {
+      "id": "a10",
+      "headline": "Two stories that aged well",
+      "section": "archive",
+      "page": 12,
+      "kind": "department",
+      "sources": []
+    },
+    {
+      "id": "a11",
+      "headline": "Bread at Emmaus and bread for a prisoner",
+      "section": "faith",
+      "page": 13,
+      "kind": "feature",
+      "sources": [
+        {
+          "post_id": "1000000000000000210",
+          "url": "https://x.com/demo_editor/status/1000000000000000210",
+          "author_handle": "demo_editor",
+          "author_name": "Demo Editor",
+          "snippet": "Example data — not a real post. A short stand-in for the post this story was written from."
+        }
+      ]
+    },
+    {
+      "id": "a12",
+      "headline": "Five long reads",
+      "section": "worth-your-time",
+      "page": 15,
+      "kind": "department",
+      "sources": []
+    },
+    {
+      "id": "a13",
+      "headline": "Permission not to love Karamazov",
+      "section": "last-word",
+      "page": 16,
+      "kind": "column",
+      "sources": [
+        {
+          "post_id": "1000000000000000212",
+          "url": "https://x.com/example_author/status/1000000000000000212",
+          "author_handle": "example_author",
+          "author_name": "Example Author",
+          "snippet": "Example data — not a real post. A short stand-in for the post this story was written from."
+        }
+      ]
+    }
+  ],
+  "files": {
+    "pdf_color": "issue-002-color.pdf",
+    "pdf_grayscale": "issue-002-grayscale.pdf",
+    "pages_dir": "pages/",
+    "page_count": 16,
+    "sha256": {
+      "pdf_color": "56dad49e25be4adbfeca6e41743f79f037711bec778fff7e3ce55c32be701657",
+      "pdf_grayscale": "78e17bd187fa450bfbfc71556849e4c8d00f0f99ac4786a02f3c7b8d1b21f6dc"
+    }
+  },
+  "image_credits": [
+    "Cover illustration: AI-generated for this issue (example credit)."
+  ]
+}

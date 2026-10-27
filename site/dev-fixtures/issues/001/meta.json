@@ -1,0 +1,48 @@
+{
+  "issue": 1,
+  "title": "The Friday receipts machine",
+  "date": "2026-10-10",
+  "pages": 16,
+  "cover_headline": "Example cover headline (sample data)",
+  "cover_image": "pages/p-01.webp",
+  "qa_verdict": "pass",
+  "sections": [
+    {
+      "slug": "ai",
+      "label": "AI & Tools",
+      "page_start": 2,
+      "page_end": 16
+    }
+  ],
+  "articles": [
+    {
+      "id": "a01",
+      "headline": "Example story (sample data)",
+      "section": "ai",
+      "page": 2,
+      "kind": "feature",
+      "sources": [
+        {
+          "post_id": "1000000000000000100",
+          "url": "https://x.com/example_author/status/1000000000000000100",
+          "author_handle": "example_author",
+          "author_name": "Example Author",
+          "snippet": "Example data — not a real post. A short stand-in for the post this story was written from."
+        }
+      ]
+    }
+  ],
+  "files": {
+    "pdf_color": "issue-001-color.pdf",
+    "pdf_grayscale": "issue-001-grayscale.pdf",
+    "pages_dir": "pages/",
+    "page_count": 16,
+    "sha256": {
+      "pdf_color": "0cc5b5a23ed9931894fcab2adee1e286e891c02be922fdf17a1d18ae5573a5a5",
+      "pdf_grayscale": "ce2b71e86087c182a9f1115950807ccbe7e563d7ca4829f449af4d71df74bdd0"
+    }
+  },
+  "image_credits": [
+    "Cover illustration: AI-generated for this issue (example credit)."
+  ]
+}
